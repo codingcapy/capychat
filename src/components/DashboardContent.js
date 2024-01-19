@@ -7,12 +7,17 @@ import Messages from "@/components/Messages";
 import ChatsM from "@/components/ChatsM";
 import FriendsM from "@/components/FriendsM";
 import MessagesM from "@/components/MessagesM";
+import AddFriend from "@/components/AddFriend"
+import FriendProfile from '@/components/FriendProfile'
 import { useState, useEffect } from "react";
 
 export default function DashboardContent(props) {
     const [chatsMode, setChatsMode] = useState(true);
     const [messagesMode, setMessagesMode] = useState(false);
     const [friendsMode, setFriendsMode] = useState(false);
+    const [showAddFriend, setShowAddFriend] = useState(false)
+    const [showFriend, setShowFriend] = useState(false)
+    const [showMessages, setShowMessages] = useState(true)
     const [isMenuSticky, setIsMenuSticky] = useState(false);
 
     function tappedChats() {
@@ -33,6 +38,22 @@ export default function DashboardContent(props) {
         setFriendsMode(true);
     }
 
+    function clickedAddFriend(){
+        setShowMessages(false)
+        setShowAddFriend(true)
+        setShowFriend(false)
+    }
+    function clickedChat(){
+        setShowMessages(true)
+        setShowAddFriend(false)
+        setShowFriend(false)
+    }
+    function clickedFriend(){
+        setShowMessages(false)
+        setShowAddFriend(false)
+        setShowFriend(true)
+    }
+
     useEffect(() => {
         function handleScroll() {
             const scrollPosition = window.scrollY;
@@ -50,9 +71,11 @@ export default function DashboardContent(props) {
             <main main className="flex-1">
                 <div className="hidden md:flex">
                     <div className="flex">
-                        <Friends />
-                        <Chats />
-                        <Messages />
+                        <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend}/>
+                        <Chats clickedChat={clickedChat}/>
+                        {showFriend && <FriendProfile />}
+                        {showMessages && <Messages />}
+                        {showAddFriend && <AddFriend />}
                         <div className="py-5 ">
                             <div className="px-5">{props.username}</div>
                             <Logout />
@@ -60,9 +83,9 @@ export default function DashboardContent(props) {
                     </div>
                 </div>
                 <div className="px-3">
-                {chatsMode && <ChatsM />}
-                {friendsMode && <FriendsM />}
-                {messagesMode && <MessagesM />}
+                    {chatsMode && <ChatsM />}
+                    {friendsMode && <FriendsM />}
+                    {messagesMode && <MessagesM />}
                 </div>
             </main>
             <div

@@ -1,0 +1,43 @@
+
+##add friend
+
+const inputUser = formData userUsername
+const user = Users.findOne({username: userUsername})
+const inputFriend = formData friendUsername
+const friend = Users.findOne({username:friendUsername})
+if !friend return error message
+if friend.username in user.friends return error message
+user.friends.push(friend) // need to figure out how to do this with mongoose
+
+
+##create chat
+
+const chatTitle = formData title
+const inputUser = formData userUsername
+const user = Users.findOne({username: userUsername})
+const inputFriend = formData friendUsername
+const friend = Users.findOne({username:friendUsername})
+const chat = Chat.create({title:chatTitle, user1:user, user2:friend})
+user.chats.push(chat) // need to figure out how to do this with mongoose
+friend.chats.push(chat) // need to figure out how to do this with mongoose
+
+
+##create message
+
+const inputMessage = formData message
+const inputUser = formData userUsername
+const inputChat = formData chatId
+const message = Message.create({inputMessage, inputUser})
+const chat = Chat.findOne({chatId:chatId})
+chat.messages.push(message)
+
+##get friend
+const inputFriend = formData friendUsername
+const friend = Users.findOne({username:friendUsername})
+display friend details in friend profile page
+
+##get chat
+const inputChat = chatId
+const chat = Chat.findOne({chatId:chatId})
+const messages = chat.messages.find(last 30 or so)
+message.map((message)=>display each message in the browser)
