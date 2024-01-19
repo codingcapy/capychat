@@ -59,9 +59,11 @@ export default function DashboardContent(props) {
                         </div>
                     </div>
                 </div>
+                <div className="px-3">
                 {chatsMode && <ChatsM />}
                 {friendsMode && <FriendsM />}
                 {messagesMode && <MessagesM />}
+                </div>
             </main>
             <div
                 className={`flex py-5 md:hidden sticky z-10 bg-white ${isMenuSticky ? "top-0" : "bottom-0"
@@ -73,7 +75,7 @@ export default function DashboardContent(props) {
                 <div className="px-2" onClick={tappedChats}>
                     Chats
                 </div>
-                <div className="px-2" onClick={tappedMessages}>
+                <div className="px-1" onClick={tappedMessages}>
                     Messages
                 </div>
                 <div>{props.username}</div>
