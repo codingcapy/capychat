@@ -32,7 +32,9 @@ const chat = Chat.findOne({chatId:chatId})
 Chat.updateOne({chatId:chat.chatId}, {$push:{messages:message}})
 
 ##get friends
-const friends = User.findAll({}) // need to figure out how to get all users inside currentUser's friends list
+const inputUser = formData.get("userUsername")
+const user = await Users.findOne({username: inputUser})
+const friends = User.find({username:{$in:user.friends.distinct('username')}})
 friends.map((friend)=><div>friend.username</div>)
 
 ##get friend
