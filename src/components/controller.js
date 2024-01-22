@@ -24,8 +24,22 @@ export async function createUser(formData) {
     }
 }
 
-export async function validateSession(){
+export async function validateSession() {
     const session = await auth();
     !session && redirect("/")
     return session
+}
+
+export async function addFriend(formData) {
+    const inputUser = formData.get('currentuser')
+    console.log(inputUser)
+    const user = await User.findOne({ username: inputUser })
+    console.log(user)
+    const inputFriend = formData.get('frienduser')
+    console.log(inputFriend)
+    const friend = await User.findOne({ username: inputFriend })
+    console.log((friend))
+    if (!friend) return
+    if (friend.username in user.friends) return
+    await User.updateOne({ username: inputUser }, { $push: { friends: friend.username } })
 }

@@ -13,12 +13,10 @@ import DashboardContent from "@/components/DashboardContent"
 export default async function Dashboard() {
 
     const session = await auth();
-    console.log(session)
+    
     !session && redirect("/")
-    const session2 = await validateSession()
-    console.log(session2)
 
     return (
-            <DashboardContent username={session?.user.username}/>
+            <DashboardContent username={session?.user.username} friends={session?.user.friends}/>
     )
 }

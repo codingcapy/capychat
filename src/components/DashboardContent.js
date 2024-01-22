@@ -19,6 +19,7 @@ export default function DashboardContent(props) {
     const [showFriend, setShowFriend] = useState(false)
     const [showMessages, setShowMessages] = useState(true)
     const [isMenuSticky, setIsMenuSticky] = useState(false);
+    const [friend, setFriend] = useState(null)
 
     function tappedChats() {
         setChatsMode(true);
@@ -48,7 +49,8 @@ export default function DashboardContent(props) {
         setShowAddFriend(false)
         setShowFriend(false)
     }
-    function clickedFriend(){
+    function clickedFriend(username){
+        setFriend(username);
         setShowMessages(false)
         setShowAddFriend(false)
         setShowFriend(true)
@@ -71,11 +73,11 @@ export default function DashboardContent(props) {
             <main main className="flex-1">
                 <div className="hidden md:flex">
                     <div className="flex">
-                        <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend}/>
+                        <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} friends={props.friends}/>
                         <Chats clickedChat={clickedChat}/>
-                        {showFriend && <FriendProfile />}
+                        {showFriend && <FriendProfile friendName={friend}/>}
                         {showMessages && <Messages />}
-                        {showAddFriend && <AddFriend />}
+                        {showAddFriend && <AddFriend currentUser={props.username}/>}
                         <div className="py-5 ">
                             <div className="px-5">{props.username}</div>
                             <Logout />

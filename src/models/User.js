@@ -8,7 +8,9 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: [true, 'password is required'], maxlength: [80, 'password char limit is 80'] },
     date: { type: Date, required: true, default: Date.now },
     active: { type: Boolean, required: true, default: true },
-    userId: { type: Number, required: [true, 'userId is required'] }
+    userId: { type: Number, required: [true, 'userId is required'] },
+    friends: [String],
+    chats: [String]
 })
 
 const User = mongoose.models.User || mongoose.model('User', UserSchema)
