@@ -10,7 +10,8 @@ const UserSchema = new mongoose.Schema({
     active: { type: Boolean, required: true, default: true },
     userId: { type: Number, required: [true, 'userId is required'] },
     friends: [String],
-    chats: [String]
+    chats: [String],
+    blocked: [String]
 })
 
 const User = mongoose.models.User || mongoose.model('User', UserSchema)

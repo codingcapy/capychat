@@ -75,7 +75,7 @@ export default function DashboardContent(props) {
                     <div className="flex">
                         <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} friends={props.friends}/>
                         <Chats clickedChat={clickedChat}/>
-                        {showFriend && <FriendProfile friendName={friend}/>}
+                        {showFriend && <FriendProfile currentUser={props.username} friendName={friend}/>}
                         {showMessages && <Messages />}
                         {showAddFriend && <AddFriend currentUser={props.username}/>}
                         <div className="py-5 ">
