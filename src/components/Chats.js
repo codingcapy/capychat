@@ -1,7 +1,7 @@
 
 
 
-export default function Chats(props ) {
+export default function Chats(props) {
 
 
     return (
@@ -9,61 +9,9 @@ export default function Chats(props ) {
             <div className=" py-5 text-xl sticky top-0 bg-white">Chats</div>
             <div>
                 <div onClick={props.clickedChat} className="cursor-pointer">Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
-                <div>Chat 1</div>
+                {props.chats && props.chats.map((chat)=><div key={chat.chatId} onClick={()=>props.clickedChat(chat)} className="cursor-pointer">
+                    {chat.title}
+                    </div>)}
             </div>
         </div>
     )

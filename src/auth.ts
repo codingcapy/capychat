@@ -41,6 +41,8 @@ export const authConfig = {
                 token.userId = user.userId;
                 //@ts-ignore
                 token.friends = user.friends;
+                //@ts-ignore
+                token.chats = user.chats;
             }
             return token
         },
@@ -53,6 +55,8 @@ export const authConfig = {
             session.user.userId = token.userId
             //@ts-ignore
             session.user.friends = token.friends
+            //@ts-ignore
+            session.user.chats = token.chats
             return session
         },
     },

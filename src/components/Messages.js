@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 
-export default function Messages() {
+export default function Messages(props) {
 
     const [isMenuSticky, setIsMenuSticky] = useState(false);
 
@@ -31,52 +31,18 @@ export default function Messages() {
                 <div className="py-2">
                     <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
                     <div>WOOHOO!</div>
-                </div><div className="py-2">
+                </div>
+                <div className="py-2">
                     <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
                     <div>🔥🔥🔥🔥🔥🔥🔥🔥</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
-                </div><div className="py-2">
-                    <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
-                    <div>Message 2</div>
                 </div>
+                {props.currentChat.map((message)=><div>{message.content}</div>)}
                 <div className={`py-10 bg-white sticky z-20 ${isMenuSticky ? "top-0" : "bottom-0"
                     }`}>
                     <form>
                         <div className="flex">
-                        <input type="text" placeholder="write a message" required className="py-2 px-2 min-w-96" />
-                        <button className=" mx-2 px-5 py-5 rounded-xl bg-yellow-600 text-white">Send</button>
+                            <input type="text" id="content" name="content" placeholder="write a message" required className="py-2 px-2 min-w-96" />
+                            <button className=" mx-2 px-5 py-5 rounded-xl bg-yellow-600 text-white">Send</button>
                         </div>
                     </form>
                 </div>

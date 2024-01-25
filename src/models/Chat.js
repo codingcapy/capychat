@@ -2,12 +2,13 @@
 
 
 import mongoose from "mongoose";
+import {MessageSchema} from "./Message"
 
-const ChatSchema = new mongoose.Schema({
-    title: { type: String, required: [true, 'title is required'], trim: true, maxlength: [80, 'title char limit is 80'] },
+export const ChatSchema = new mongoose.Schema({
+    title: { type: String, required: true, default:"New Chat"},
     date: { type: Date, required: true, default: Date.now },
     users: [String],
-    messages: [String],
+    messages: [MessageSchema],
     chatId: { type: Number, required: [true, 'chatId is required'] },
 })
 

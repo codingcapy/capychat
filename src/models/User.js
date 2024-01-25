@@ -2,6 +2,7 @@
 
 
 import mongoose from "mongoose";
+import Chat, { ChatSchema } from "./Chat";
 
 const UserSchema = new mongoose.Schema({
     username: { type: String, required: [true, 'username is required'], trim: true, maxlength: [80, 'username char limit is 80'] },
@@ -10,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     active: { type: Boolean, required: true, default: true },
     userId: { type: Number, required: [true, 'userId is required'] },
     friends: [String],
-    chats: [String],
+    chats: [ChatSchema],
     blocked: [String]
 })
 

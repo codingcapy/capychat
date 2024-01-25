@@ -5,8 +5,6 @@ import { addFriend } from "./controller"
 
 export default function AddFriend(props) {
 
-
-
     return (
         <div className="px-5 flex-2 border-2 min-w-full h-screen overflow-y-auto ">
             <form action={addFriend} className="flex flex-col">

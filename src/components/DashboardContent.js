@@ -12,6 +12,9 @@ import FriendProfile from '@/components/FriendProfile'
 import { useState, useEffect } from "react";
 
 export default function DashboardContent(props) {
+
+    console.log(props)
+
     const [chatsMode, setChatsMode] = useState(true);
     const [messagesMode, setMessagesMode] = useState(false);
     const [friendsMode, setFriendsMode] = useState(false);
@@ -19,7 +22,8 @@ export default function DashboardContent(props) {
     const [showFriend, setShowFriend] = useState(false)
     const [showMessages, setShowMessages] = useState(true)
     const [isMenuSticky, setIsMenuSticky] = useState(false);
-    const [friend, setFriend] = useState(null)
+    const [friend, setFriend] = useState("")
+    const [currentChat, setCurrentChat] = useState([])
 
     function tappedChats() {
         setChatsMode(true);
@@ -39,17 +43,18 @@ export default function DashboardContent(props) {
         setFriendsMode(true);
     }
 
-    function clickedAddFriend(){
+    function clickedAddFriend() {
         setShowMessages(false)
         setShowAddFriend(true)
         setShowFriend(false)
     }
-    function clickedChat(){
+    function clickedChat(chat) {
+        setCurrentChat(chat.messages)
         setShowMessages(true)
         setShowAddFriend(false)
         setShowFriend(false)
     }
-    function clickedFriend(username){
+    function clickedFriend(username) {
         setFriend(username);
         setShowMessages(false)
         setShowAddFriend(false)
@@ -73,11 +78,11 @@ export default function DashboardContent(props) {
             <main main className="flex-1">
                 <div className="hidden md:flex">
                     <div className="flex">
-                        <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} friends={props.friends}/>
-                        <Chats clickedChat={clickedChat}/>
-                        {showFriend && <FriendProfile currentUser={props.username} friendName={friend}/>}
-                        {showMessages && <Messages />}
-                        {showAddFriend && <AddFriend currentUser={props.username}/>}
+                        <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} friends={props.friends} />
+                        <Chats clickedChat={clickedChat} chats={props.chats} />
+                        {showFriend && <FriendProfile currentUser={props.username} friendName={friend} />}
+                        {showMessages && <Messages currentChat={currentChat} />}
+                        {showAddFriend && <AddFriend currentUser={props.username} />}
                         <div className="py-5 ">
                             <div className="px-5">{props.username}</div>
                             <Logout />

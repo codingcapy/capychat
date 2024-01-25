@@ -17,6 +17,6 @@ export default async function Dashboard() {
     !session && redirect("/")
 
     return (
-            <DashboardContent username={session?.user.username} friends={session?.user.friends}/>
+            <DashboardContent username={session?.user.username} friends={session?.user.friends} chats={session?.user.chats}/>
     )
 }

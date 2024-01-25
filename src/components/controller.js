@@ -43,15 +43,23 @@ export async function addFriend(formData) {
     if (!friend) return
     if (friend.username in user.friends) return
     await User.updateOne({ username: inputUser }, { $push: { friends: friend.username } })
+    await User.updateOne({ username: inputFriend }, { $push: { friends: user.username } })
+    redirect("/dashboard")
 }
 
 export async function createChat(formData){
+    const chats = await Chat.find({})
+    const chatId = chats.length === 0 ? 1 : chats[chats.length - 1].chatId + 1
     const title = formData.get('title') 
     const user = formData.get('user')
     const friend = formData.get('friend')
-    const chat = await Chat.create({title})
-    await Chat.updateOne({title:title}, { $push: { users: user } })
-    await Chat.updateOne({title:title}, { $push: { users: friend } })
+    await Chat.create({title, chatId})
+    await Chat.updateOne({chatId:chatId}, { $push: { users: user } })
+    await Chat.updateOne({chatId:chatId}, { $push: { users: friend } })
+    const chat = await Chat.findOne({chatId:chatId})
+    await User.updateOne({ username: user }, { $push: { chats: chat } })
+    await User.updateOne({ username: friend }, { $push: { chats: chat } })
+    redirect("/dashboard")
 }
 
 export async function addFriendToChat(formData) {
@@ -66,4 +74,9 @@ export async function blockUser(formData){
     const inputFriend = formData.get('frienduser')
     await User.updateOne({ username: inputUser }, { $pull: { friends: inputFriend } })
     await User.updateOne({ username: inputUser }, { $push: { blocked: inputFriend } })
+}
+
+export async function createMessage(formData) {
+    const inputContent = formData.get('content')
+    
 }
