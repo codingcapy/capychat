@@ -7,6 +7,7 @@ import bcrypt from "bcrypt"
 import { auth } from '@/auth'
 import User from "@/models/User";
 import Chat from "@/models/Chat"
+import Message from "@/models/Message";
 
 const saltRounds = 10;
 
@@ -78,5 +79,13 @@ export async function blockUser(formData){
 
 export async function createMessage(formData) {
     const inputContent = formData.get('content')
-    
+    const user = formData.get('user')
+    const chatId = formData.get('chatid')
+    const messages = await Message.find({})
+    const messageId = messages.length === 0 ? 1 : messages[messages.length - 1].messageId + 1
+    await Message.create({content:inputContent, username:user, messageId})
+    const message = await Message.findOne({messageId:messageId})
+    const chat = await Chat.findOne({chatId:parseInt(chatId)})
+    try{await Chat.updateOne({chatId:parseInt(chatId)}, {$push: {messages:message}})}
+    catch(err){console.log(err)}
 }

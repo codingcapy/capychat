@@ -2,6 +2,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
+import { createMessage } from "./controller";
 
 export default function Messages(props) {
 
@@ -18,6 +19,8 @@ export default function Messages(props) {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    console.log(props.currentChat)
 
     return (
         <div className="px-5 border-2 min-w-full h-screen overflow-y-auto">
@@ -36,12 +39,14 @@ export default function Messages(props) {
                     <div className="flex"><div className="font-bold">user123</div><div className="pl-2">on 2024-01-19 12:34 PM</div></div>
                     <div>🔥🔥🔥🔥🔥🔥🔥🔥</div>
                 </div>
-                {props.currentChat.map((message)=><div>{message.content}</div>)}
+                {props.currentChat.messages.map((message)=><div>{message.content}</div>)}
                 <div className={`py-10 bg-white sticky z-20 ${isMenuSticky ? "top-0" : "bottom-0"
                     }`}>
-                    <form>
+                    <form action={createMessage}>
                         <div className="flex">
                             <input type="text" id="content" name="content" placeholder="write a message" required className="py-2 px-2 min-w-96" />
+                            <input type="text" id='user' name="user" defaultValue={props.currentUser} className="hidden"/>
+                            <input type="text" id='chatid' name="chatid" defaultValue={props.currentChat.chatId} className="hidden"/>
                             <button className=" mx-2 px-5 py-5 rounded-xl bg-yellow-600 text-white">Send</button>
                         </div>
                     </form>

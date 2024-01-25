@@ -21,7 +21,12 @@ export const authConfig = {
             },
             async authorize(credentials) {
                 await db
-                const user = await User.findOne({ username: credentials.username })
+                const user = await User.findOne({ username: credentials.username }).populate({
+                    path: 'chats',
+                    populate: {
+                      path: 'messages',
+                    },
+                  });
                 if (!user) {
                     return null
                 }

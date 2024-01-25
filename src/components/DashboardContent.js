@@ -13,8 +13,6 @@ import { useState, useEffect } from "react";
 
 export default function DashboardContent(props) {
 
-    console.log(props)
-
     const [chatsMode, setChatsMode] = useState(true);
     const [messagesMode, setMessagesMode] = useState(false);
     const [friendsMode, setFriendsMode] = useState(false);
@@ -23,7 +21,7 @@ export default function DashboardContent(props) {
     const [showMessages, setShowMessages] = useState(true)
     const [isMenuSticky, setIsMenuSticky] = useState(false);
     const [friend, setFriend] = useState("")
-    const [currentChat, setCurrentChat] = useState([])
+    const [currentChat, setCurrentChat] = useState({messages:[]})
 
     function tappedChats() {
         setChatsMode(true);
@@ -49,7 +47,9 @@ export default function DashboardContent(props) {
         setShowFriend(false)
     }
     function clickedChat(chat) {
-        setCurrentChat(chat.messages)
+        setCurrentChat(chat)
+        console.log("current chat is")
+        console.log(currentChat)
         setShowMessages(true)
         setShowAddFriend(false)
         setShowFriend(false)
@@ -81,7 +81,7 @@ export default function DashboardContent(props) {
                         <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} friends={props.friends} />
                         <Chats clickedChat={clickedChat} chats={props.chats} />
                         {showFriend && <FriendProfile currentUser={props.username} friendName={friend} />}
-                        {showMessages && <Messages currentChat={currentChat} />}
+                        {showMessages && <Messages currentChat={currentChat} currentUser={props.username} />}
                         {showAddFriend && <AddFriend currentUser={props.username} />}
                         <div className="py-5 ">
                             <div className="px-5">{props.username}</div>
