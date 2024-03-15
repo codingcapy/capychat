@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: add friend component for CapyTalk client
+description: add friend component for CapyChat client
  */
 
 import { useState } from "react";

@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: router for CapyTalk client
+description: router for CapyChat client
  */
 
 import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
@@ -20,12 +20,12 @@ export function Router() {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route element={<Layout />}>
-                <Route path="/capytalk/" element={<HomePage />} />
-                <Route path="/capytalk/users/login" element={<LoginPage />} />
-                <Route path="/capytalk/users/signup" element={<SignupPage />} />
-                <Route path="/capytalk/dashboard/:userId" element={<Dashboard />} />
-                <Route path="/capytalk/about" element={<AboutPage />} />
-                <Route path="/capytalk/contact" element={<ContactPage />} />
+                <Route path="/capychat/" element={<HomePage />} />
+                <Route path="/capychat/users/login" element={<LoginPage />} />
+                <Route path="/capychat/users/signup" element={<SignupPage />} />
+                <Route path="/capychat/dashboard/:userId" element={<Dashboard />} />
+                <Route path="/capychat/about" element={<AboutPage />} />
+                <Route path="/capychat/contact" element={<ContactPage />} />
             </Route>
         )
     )

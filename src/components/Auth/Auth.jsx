@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: auth component for CapyTalk client
+description: auth component for CapyChat client
  */
 
 import { jwtDecode } from "jwt-decode";

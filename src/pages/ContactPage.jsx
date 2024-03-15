@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: contact page for CapyTalk client
+description: contact page for CapyChat client
  */
 
 import axios from "axios";

@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: dashboard for CapyTalk client
+description: dashboard for CapyChat client
  */
 
 import { NavLink, useLoaderData } from "react-router-dom";
@@ -260,7 +260,7 @@ export default function Dashboard() {
                         {showProfile && <Profile />}
                         <div className="flex flex-col">
                             <div onClick={clickedProfile} className="flex px-2 py-5 rounded-xl hover:bg-slate-600 transition-all ease duration-300 font-bold cursor-pointer"><CgProfile size={25} className="text-center mx-2" />{user.username}</div>
-                            <NavLink to="/capytalk/" onClick={logoutService} className="flex px-5 py-1 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Logout<IoExitOutline size={25} className="text-center mx-2" /></NavLink>
+                            <NavLink to="/capychat/" onClick={logoutService} className="flex px-5 py-1 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Logout<IoExitOutline size={25} className="text-center mx-2" /></NavLink>
                         </div>
                     </div>
                 </div>
@@ -287,7 +287,7 @@ export default function Dashboard() {
                     <CgProfile size={25} className="text-center mx-2" />
                     <p className="text-center text-xs">You</p>
                 </div>
-                <NavLink to="/capytalk/" onClick={logoutService} className="text-xs">
+                <NavLink to="/capychat/" onClick={logoutService} className="text-xs">
                     <IoExitOutline size={25} className="text-center mx-2" />Logout
                 </NavLink>
             </div>

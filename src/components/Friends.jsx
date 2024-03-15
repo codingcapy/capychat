@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: friends component for CapyTalk client
+description: friends component for CapyChat client
  */
 
 import { FaUserFriends } from "react-icons/fa";

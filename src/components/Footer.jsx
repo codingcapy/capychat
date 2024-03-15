@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: footer component for CapyTalk client
+description: footer component for CapyChat client
  */
 
 export default function Footer() {

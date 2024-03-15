@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: message component for CapyTalk client
+description: message component for CapyChat client
  */
 
 import { useState, useEffect, useRef } from "react";

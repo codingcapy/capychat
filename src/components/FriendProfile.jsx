@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: friend profile component for CapyTalk client
+description: friend profile component for CapyChat client
  */
 
 import { CgProfile } from "react-icons/cg";

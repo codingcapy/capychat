@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: about page for CapyTalk client
+description: about page for CapyChat client
  */
 
 import paulImg from "/paul_kim.jpg";
@@ -17,9 +17,9 @@ export default function AboutPage() {
             <Header />
             <main className="flex-1 mx-auto text-center max-w-screen-xl">
                 <h1 className="text-3xl font-bold text-center py-5 ">
-                    About CapyTalk
+                    About CapyChat
                 </h1>
-                <p className="py-2">CapyTalk is a chat application developed in 2024 by Paul Sunghun Kim that allows you to communicate with your friends, family, coworkers, and loved ones. This web app uses clean, simple features that are easy for you to use and understand.</p>
+                <p className="py-2">CapyChat is a chat application developed in 2024 by Paul Sunghun Kim that allows you to communicate with your friends, family, coworkers, and loved ones. This web app uses clean, simple features that are easy for you to use and understand.</p>
                 <h1 className="text-3xl font-bold text-center py-5 ">
                     Meet the Developer!
                 </h1>

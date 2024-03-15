@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: chats component for CapyTalk client
+description: chats component for CapyChat client
  */
 
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";

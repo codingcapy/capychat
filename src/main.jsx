@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: main for CapyTalk client
+description: main for CapyChat client
  */
 
 import React from 'react';

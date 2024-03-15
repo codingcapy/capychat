@@ -3,7 +3,7 @@
 author: Paul Kim
 date: February 8, 2024
 version: 1.0
-description: signup page for CapyTalk client
+description: signup page for CapyChat client
  */
 
 import { NavLink, useNavigate } from "react-router-dom";
@@ -27,7 +27,7 @@ export default function SignupPage() {
         const res = await axios.post(`${DOMAIN}/api/users/`, newUser);
         if (res?.data.success) {
             setMessage(res?.data.message);
-            navigate("/capytalk/users/login");
+            navigate("/capychat/users/login");
         }
         else {
             setMessage(res?.data.message);
@@ -53,7 +53,7 @@ export default function SignupPage() {
                         <input type="email" name="email" id="email" placeholder="example@example.com" required className="px-2 border rounded-lg border-slate-700 py-1" />
                     </div>
                     <button className="rounded-xl my-5 py-2 px-2 bg-slate-700 text-white">Sign Up</button>
-                    <NavLink to="/capytalk/users/login" className="text-center">Login</NavLink>
+                    <NavLink to="/capychat/users/login" className="text-center">Login</NavLink>
                 </form>
                 <p>{message}</p>
             </main>
