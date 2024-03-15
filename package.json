@@ -1,32 +1,39 @@
 {
-  "name": "next-project-1",
-  "version": "0.1.0",
+  "name": "capytalk",
   "private": true,
+  "version": "0.0.0",
+  "homepage": "https://codingcapy.github.io/capytalk/",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@auth/core": "^0.19.0",
-    "@auth/mongodb-adapter": "^2.0.10",
-    "@types/bcrypt": "^5.0.2",
-    "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
-    "mongodb": "^6.3.0",
-    "mongoose": "^8.0.3",
-    "next": "14.0.4",
-    "next-auth": "^5.0.0-beta.4",
-    "react": "^18",
-    "react-dom": "^18"
+    "axios": "^1.6.7",
+    "jwt-decode": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
+    "react-router-dom": "^6.22.0",
+    "socket.io-client": "^4.7.4",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
-    "@types/react": "18.2.46",
-    "autoprefixer": "^10.0.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.4",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0"
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "gh-pages": "^6.1.1",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.0.8"
   }
 }
