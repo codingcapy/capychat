@@ -6,6 +6,6 @@ version: 1.0
 description: endpoint for CapyChat client
  */
 
-const DOMAIN = "http://localhost:3333";
+const DOMAIN = "https://capychat-server-production.up.railway.app/";
 
 export default DOMAIN;
