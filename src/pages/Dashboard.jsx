@@ -22,7 +22,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoExitOutline, IoChatbubbleOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { FaUserFriends } from "react-icons/fa";
 
-const socket = io("https://capychat-server-production.up.railway.app/");
+const socket = io("https://capychat-server-production.up.railway.app");
 
 export default function Dashboard() {
 

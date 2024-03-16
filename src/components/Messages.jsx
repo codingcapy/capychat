@@ -14,7 +14,7 @@ import io from "socket.io-client";
 import { IoExitOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { LuSendHorizonal } from "react-icons/lu";
 
-const socket = io("https://capychat-server-production.up.railway.app/");
+const socket = io("https://capychat-server-production.up.railway.app");
 
 export default function Messages(props) {
 

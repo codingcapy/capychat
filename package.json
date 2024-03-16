@@ -2,7 +2,7 @@
   "name": "capychat",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://codingcapy.github.io/capychat/",
+  "homepage": "https://codingcapy.github.io/capychat",
   "type": "module",
   "scripts": {
     "dev": "vite",

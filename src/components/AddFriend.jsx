@@ -11,7 +11,7 @@ import io from "socket.io-client";
 import axios from "axios";
 import DOMAIN from "../services/endpoint";
 
-const socket = io("https://capychat-server-production.up.railway.app/");
+const socket = io("https://capychat-server-production.up.railway.app");
 
 export default function AddFriend(props) {
 
