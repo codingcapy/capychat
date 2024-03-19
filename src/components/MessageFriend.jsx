@@ -12,7 +12,7 @@ import axios from "axios";
 import DOMAIN from "../services/endpoint";
 import { NavLink } from "react-router-dom";
 
-const socket = io("http://localhost:3333");
+const socket = io("capychat-server-production.up.railway.app");
 
 export default function MessageFriend(props) {
 
