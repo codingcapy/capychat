@@ -13,6 +13,7 @@ import DOMAIN from "../services/endpoint";
 import io from "socket.io-client";
 import { IoExitOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { LuSendHorizonal } from "react-icons/lu";
+import MessageFriend from "./MessageFriend";
 
 const socket = io("https://capychat-server-production.up.railway.app");
 
@@ -39,7 +40,7 @@ export default function Messages(props) {
     };
 
     async function handleLeaveChat() {
-        const content = `${props.currentUser} left the chat`;
+        const content = `${props.user.username} left the chat`;
         const currentUser = "notification";
         const message = { content, user: currentUser, chatId: props.currentChat.chat_id };
         await axios.post(`${DOMAIN}/api/messages`, message);
@@ -63,12 +64,9 @@ export default function Messages(props) {
             <div className="sticky top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
             <div className="overflow-hidden">
                 {props.currentMessages.map((message) =>
-                    props.currentUser === message.username
+                    props.user.username === message.username
                         ? <Message key={message.message_id} currentMessages={props.currentMessages} currentChat={props.currentChat} message={message} setCurrentMessages={props.setCurrentMessages} />
-                        : <div key={message.message_id} className="py-2 hover:bg-slate-600 transition-all ease duration-300">
-                            <div className="flex"><div className="font-bold px-1">{message.username}</div><div className="pl-2">on {message.date}</div></div>
-                            <div className="overflow-wrap break-all px-1">{message.content}</div>
-                        </div>)}
+                        : <MessageFriend key={message.message_id} currentMessages={props.currentMessages} currentChat={props.currentChat} message={message} setCurrentMessages={props.setCurrentMessages} user={props.user} />)}
                 <div ref={messagesEndRef} />
             </div>
             <div className={`py-2 md:py-10 bg-slate-800 sticky z-20 ${isMenuSticky ? "top-0" : "bottom-0"}`}>
