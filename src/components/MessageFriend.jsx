@@ -23,7 +23,7 @@ export default function MessageFriend(props) {
 
     async function handleReply(e) {
         e.preventDefault();
-        const content = e.target.content.value;
+        const content = `"${props.message.content.value}" ${e.target.content.value}`;
         const currentUser = props.user.username;
         const message = { content, user: currentUser, chatId: props.currentChat.chat_id };
         const res = await axios.post(`${DOMAIN}/api/messages`, message);

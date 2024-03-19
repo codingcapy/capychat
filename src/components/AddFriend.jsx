@@ -20,7 +20,7 @@ export default function AddFriend(props) {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        const username = props.currentUser;
+        const username = props.user.username;
         const friend = e.target.frienduser.value;
         const data = { username, friend };
         const res = await axios.post(`${DOMAIN}/api/user/friends`, data);
