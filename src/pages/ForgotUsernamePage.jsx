@@ -26,7 +26,7 @@ export default function ForgotUsernamePage() {
                         <h2 className="py-10 text-2xl text-indigo-600 font-medium text-center">Forgot Username</h2>
                         <div className="flex flex-col">
                             <label htmlFor="username">Email</label>
-                            <input type="text" name="email" id="email" placeholder="Your Email" required className="px-2 border rounded-lg border-slate-700 py-1" />
+                            <input type="email" name="email" id="email" placeholder="Your Email" required className="px-2 border rounded-lg border-slate-700 py-1" />
                         </div>
                         <button className="rounded-xl my-5 py-2 px-2 bg-indigo-600 text-white">Send</button>
                         <div>Returning User? <NavLink to="/capychat/users/login" className="text-center text-indigo-600">Login</NavLink></div>
