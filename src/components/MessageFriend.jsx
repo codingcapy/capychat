@@ -10,7 +10,7 @@ import { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 import DOMAIN from "../services/endpoint";
-import { NavLink } from "react-router-dom";
+import { FaReply } from "react-icons/fa";
 
 const socket = io("capychat-server-production.up.railway.app");
 
@@ -23,7 +23,7 @@ export default function MessageFriend(props) {
 
     async function handleReply(e) {
         e.preventDefault();
-        const content = `"${props.message.content.value}" ${e.target.content.value}`;
+        const content = `"@${props.message.username} ${props.message.content}" ${e.target.content.value}`;
         const currentUser = props.user.username;
         const message = { content, user: currentUser, chatId: props.currentChat.chat_id };
         const res = await axios.post(`${DOMAIN}/api/messages`, message);
@@ -69,7 +69,7 @@ export default function MessageFriend(props) {
                     <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl" onClick={() => setReplyMode(false)}>Cancel</button>
                 </form>}
                 <div className=" edit-delete hidden group-hover:flex opacity-100 transition-opacity">
-                    {!replyMode && <div className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Reply</div>}
+                    {!replyMode && <div onClick={() => setReplyMode(true)} className="flex edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Reply <FaReply size={20} className="ml-2 pt-1" /></div>}
                 </div>
             </div>
         </div>

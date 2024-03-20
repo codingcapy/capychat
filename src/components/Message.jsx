@@ -10,6 +10,7 @@ import { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 import DOMAIN from "../services/endpoint";
+import { FaTrashCan } from "react-icons/fa6";
 
 const socket = io("https://capychat-server-production.up.railway.app");
 
@@ -73,7 +74,7 @@ export default function Message(props) {
                     {!editMode && <form onSubmit={handleEditMessage}>
                         <input name="content" id="content" defaultValue="[this message was deleted]" className="hidden" />
                         <input name="messageid" id="messageid" defaultValue={`${props.message.message_id}`} className="hidden" />
-                        <button type="submit" className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl">Delete</button>
+                        <button type="submit" className="flex delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl">Delete <FaTrashCan size={20} className="ml-2 pt-1" /></button>
                     </form>}
                 </div>
             </div>
