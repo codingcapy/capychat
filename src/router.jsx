@@ -14,6 +14,8 @@ import SignupPage from "./pages/SignupPage";
 import Dashboard from "./pages/Dashboard";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage"
+import ForgotUsernamePage from "./pages/ForgotUsernamePage"
 
 export function Router() {
 
@@ -26,6 +28,8 @@ export function Router() {
                 <Route path="/capychat/dashboard/:userId" element={<Dashboard />} />
                 <Route path="/capychat/about" element={<AboutPage />} />
                 <Route path="/capychat/contact" element={<ContactPage />} />
+                <Route path="/capychat/forgotpassword" element={<ForgotPasswordPage />} />
+                <Route path="/capychat/forgotusername" element={<ForgotUsernamePage />} />
             </Route>
         )
     )
