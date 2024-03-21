@@ -72,7 +72,7 @@ export default function MessageFriend(props) {
                     <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl" onClick={() => setReplyMode(false)}>Cancel</button>
                 </form>}
                 <div className=" edit-delete hidden group-hover:flex opacity-100 transition-opacity">
-                    {!replyMode && <div onClick={() => setReplyMode(true)} className="flex edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Reply <FaReply size={20} className="ml-2 pt-1" /></div>}
+                    {!replyMode && <div onClick={() => setReplyMode(true)} className="flex edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl hover:bg-slate-700 transition-all ease duration-300">Reply <FaReply size={20} className="ml-2 pt-1" /></div>}
                 </div>
             </div>
         </div>
