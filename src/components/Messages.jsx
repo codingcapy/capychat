@@ -56,23 +56,25 @@ export default function Messages(props) {
     }
 
     return (
-        <div className="px-5 border-2 mx-auto border-slate-600 bg-slate-800 w-[330px] md:w-[900px] h-[89vh] md:h-screen flex flex-col">
-            <div className="sticky top-0 bg-slate-800 py-5 flex justify-between">
+        <div className="px-5 border-2 mx-auto border-slate-600 bg-slate-800  w-[330px] md:w-[900px] h-[89vh] md:h-screen overflow-y-auto">
+            <div className="flex justify-between py-5 sticky top-0 bg-slate-800">
                 <div className="flex text-xl"><IoChatbubbleEllipsesOutline size={25} className="text-center mx-2" />{props.currentChat.title}</div>
                 <button onClick={handleLeaveChat} className="flex delete-btn cursor-pointer px-2 mx-1 bg-red-900 rounded-xl hover:bg-red-600 transition-all ease duration-300">Leave Chat<IoExitOutline size={25} className="text-center ml-2" /></button>
             </div>
             <div className="sticky top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
-            <div className="overflow-y-auto flex-1">
+            <div className="overflow-hidden">
                 {props.currentMessages.map((message) =>
                     props.user.username === message.username
                         ? <Message key={message.message_id} currentMessages={props.currentMessages} currentChat={props.currentChat} message={message} setCurrentMessages={props.setCurrentMessages} />
-                        : <MessageFriend key={message.message_id} user={props.user} currentMessages={props.currentMessages} currentChat={props.currentChat} message={message} setCurrentMessages={props.setCurrentMessages} />)}
+                        : <MessageFriend key={message.message_id} currentMessages={props.currentMessages} currentChat={props.currentChat} message={message} setCurrentMessages={props.setCurrentMessages} user={props.user} />)}
                 <div ref={messagesEndRef} />
             </div>
-            <div className={`py-2 md:py-10 bg-slate-800 flex ${isMenuSticky ? "top-0" : "bottom-0"} mt-auto`} >
-                <form onSubmit={props.handleCreateMessage} className="flex">
-                    <input type="text" id="content" name="content" placeholder="write a message" value={props.inputMessage} onChange={(e) => props.setInputMessage(e.target.value)} required className="py-2 px-2 my-2 rounded-xl md:w-[780px] text-black" />
-                    <button type="submit" className="mx-1 px-4 md:mx-2 md:px-5 rounded-3xl bg-yellow-600 text-white"><LuSendHorizonal size={25} /></button>
+            <div className={`py-2 md:py-10 bg-slate-800 sticky z-20 ${isMenuSticky ? "top-0" : "bottom-0"}`}>
+                <form onSubmit={props.handleCreateMessage}>
+                    <div className="flex">
+                        <input type="text" id="content" name="content" placeholder="write a message" value={props.inputMessage} onChange={(e) => props.setInputMessage(e.target.value)} required className="py-2 px-2 my-2 rounded-xl md:w-[800px] text-black" />
+                        <button type="submit" className="mx-1 px-4 md:mx-2 md:px-5 rounded-3xl bg-yellow-600 text-white"><LuSendHorizonal size={25} /></button>
+                    </div>
                 </form>
             </div>
         </div>
