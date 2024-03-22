@@ -60,7 +60,7 @@ export default function Message(props) {
     return (
         <div className="py-2 message-container group hover:bg-slate-600 transition-all ease duration-300">
             {props.message.reply_content && <div className="text-gray-400 pb-1"><span className="font-bold">@{props.message.reply_username}</span> {props.message.reply_content}</div>}
-            <div className="flex"><div className="font-bold px-1">{props.message.username}</div><div className="pl-2">on {props.message.created_at.slice(0,10)} {props.message.created_at.slice(11,16)}</div></div>
+            <div className="flex"><div className="font-bold px-1">{props.message.username}</div><div className="pl-2">on {props.message.created_at.slice(0,10)} {props.message.created_at.slice(11,19)}</div></div>
             <div className="md:flex justify-between px-1">
                 {!editMode && <div>
                     <div className="overflow-wrap break-word pb-1">{props.message.content}</div>
