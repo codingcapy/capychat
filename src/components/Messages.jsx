@@ -24,6 +24,8 @@ export default function Messages(props) {
     const [isMenuSticky, setIsMenuSticky] = useState(false);
     const [leaveChatMode, setLeaveChatMode] = useState(false)
     const [menuMode, setMenuMode] = useState(false)
+    const [editMode, setEditMode] = useState(false)
+    const [chatTitle, setChatTitle] = useState(props.currentChat.title)
     const messagesEndRef = useRef(null);
 
     function toggleMenuMode() {
@@ -47,6 +49,14 @@ export default function Messages(props) {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
+    useEffect(() => {
+        async function getChat() {
+            const res = await axios.get(`${DOMAIN}/api/chats/${props.currentChat.chat_id}`)
+            props.setCurrentChat(res.data)
+        }
+        getChat();
+    }, [props.currentChat])
+
     async function handleLeaveChat() {
         const content = `${props.user.username} left the chat`;
         const currentUser = "notification";
@@ -63,10 +73,31 @@ export default function Messages(props) {
         }
     }
 
+    async function handleEditChat(e) {
+        e.preventDefault();
+        const title = e.target.title.value;
+        const chat = { title };
+        const res = await axios.post(`${DOMAIN}/api/chats/${props.currentChat.chat_id}`, chat);
+        if (res?.data.success) {
+            const newChats = await axios.get(`${DOMAIN}/api/chats/user/${props.user.user_id}`);
+            props.setChats(newChats.data);
+            setEditMode(false);
+            socket.emit("chat", chat);
+        }
+        else {
+            setInputMessage("");
+        }
+    }
+
     return (
         <div className="px-5 border-2 border-slate-600 mx-auto bg-slate-800 w-[330px] md:w-[900px] h-[77vh] md:h-screen overflow-y-auto">
             <div className="flex justify-between py-5 sticky top-0 bg-slate-800">
-                <div className="flex text-xl"><IoChatbubbleEllipsesOutline size={25} className="text-center mx-2" />{props.currentChat.title} <button><MdModeEditOutline size={20} className="ml-2" /></button></div>
+                {!editMode && <div className="flex text-xl"><IoChatbubbleEllipsesOutline size={25} className="text-center mx-2" />{props.currentChat.title} <button onClick={() => setEditMode(true)}><MdModeEditOutline size={20} className="ml-2" /></button></div>}
+                {editMode && <form onSubmit={handleEditChat}>
+                    <input type="text" name="title" id="title" value={chatTitle} onChange={(e) => setChatTitle(e.target.value)} className="text-black" />
+                    <button className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</button>
+                    <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl" onClick={() => setEditMode(false)}>Cancel</button>
+                </form>}
                 <div>
                     <button onClick={toggleMenuMode} className="bg-slate-800 hover:bg-slate-600 transition-all ease duration-300 py-2 px-2 rounded-full"><FaEllipsis /></button>
                 </div>
