@@ -35,6 +35,7 @@ export default function Message(props) {
             props.setCurrentMessages(newMessage.data);
             setEditMode(false);
             socket.emit("message", message);
+            setDeleteMode(false)
         }
         else {
             setInputMessage("");
