@@ -79,7 +79,7 @@ export default function Messages(props) {
                 {leaveChatMode && <div className="absolute z-[99] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[20%] md:left-[40%] flex flex-col">
                     <div className="py-2">Are you sure you want to leave chat?</div>
                     <div className="mx-auto py-2">
-                        <button onClick={handleLeaveChat} className="hidden md:block edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
+                        <button onClick={handleLeaveChat} className="hidden md:block md:pb-1 edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
                         <button onClick={() => setLeaveChatMode(false)} className="hidden md:block delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300">No</button>
                         <button onClick={() => setLeaveChatMode(false)} className="md:hidden delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300">No</button>
                         <button onClick={handleLeaveChat} className="md:hidden edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>

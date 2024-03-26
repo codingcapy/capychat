@@ -258,7 +258,7 @@ export default function Dashboard() {
                     <div className="py-2">Are you sure you want to logout?</div>
                     <div className="mx-auto py-2">
                         <form onSubmit={handleLogout}>
-                            <button type="submit" className="hidden md:block edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
+                            <button type="submit" className="hidden md:block md:pb-1 edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
                             <button className="hidden md:block delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setLogoutMode(false)}>No</button>
                             <button className="md:hidden delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setLogoutMode(false)}>No</button>
                             <button type="submit" className="md:hidden edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
