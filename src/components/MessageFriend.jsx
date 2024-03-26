@@ -73,17 +73,19 @@ export default function MessageFriend(props) {
                         <div className=" edit-delete hidden group-hover:flex opacity-100 transition-opacity">
                             {!replyMode && <div onClick={() => setReplyMode(true)} className="flex edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl hover:bg-slate-700 transition-all ease duration-300">Reply <FaReply size={20} className="ml-2 pt-1" /></div>}
                         </div>
+                        <div>
+                            <div className="overflow-wrap break-word pb-1">{props.message.content}</div>
+                        </div>
                     </div>
-                    <div>
-                        <div className="overflow-wrap break-word pb-1">{props.message.content}</div>
-                    </div>
-                    {replyMode && <form onSubmit={handleReply}>
-                        <input type="text" name="content" id="content" value={messageContent} onChange={(e) => setMessageContent(e.target.value)} className="text-black" />
-                        <input name="messageid" id="messageid" defaultValue={`${props.message.message_id}`} className="hidden" />
-                        <button className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Reply</button>
-                        <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl" onClick={() => setReplyMode(false)}>Cancel</button>
-                    </form>}
                 </div>
+            </div >
+            <div className="md:flex justify-between px-1">
+                {replyMode && <form onSubmit={handleReply}>
+                    <input type="text" name="content" id="content" value={messageContent} onChange={(e) => setMessageContent(e.target.value)} className="text-black" />
+                    <input name="messageid" id="messageid" defaultValue={`${props.message.message_id}`} className="hidden" />
+                    <button className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Reply</button>
+                    <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl" onClick={() => setReplyMode(false)}>Cancel</button>
+                </form>}
             </div>
         </div>
     )

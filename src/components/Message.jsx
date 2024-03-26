@@ -22,12 +22,12 @@ export default function Message(props) {
     const [editMode, setEditMode] = useState(false);
     const [messageContent, setMessageContent] = useState(props.message.content);
     const messagesEndRef = useRef(null);
+    const [deleteMode, setDeleteMode] = useState(false)
 
     async function handleEditMessage(e) {
         e.preventDefault();
         const content = e.target.content.value;
         const messageId = e.target.messageid.value;
-        console.log(messageId)
         const message = { content };
         const res = await axios.post(`${DOMAIN}/api/messages/update/${messageId}`, message);
         if (res?.data.success) {
@@ -60,6 +60,17 @@ export default function Message(props) {
 
     return (
         <div className="py-2 message-container group hover:bg-slate-600 transition-all ease duration-300">
+            {deleteMode && <div className="absolute z-[99] py-12 px-2 md:px-10 bg-slate-800 border border-white md:top-[35%] md:left-[40%] flex flex-col">
+                <div className="py-2">Are you sure you want to delete?</div>
+                <div className="mx-auto py-2">
+                    <form onSubmit={handleEditMessage}>
+                        <input name="content" id="content" defaultValue="[this message was deleted]" className="hidden" />
+                        <input name="messageid" id="messageid" defaultValue={`${props.message.message_id}`} className="hidden" />
+                        <button type="submit" className="edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Delete</button>
+                        <button className="delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setDeleteMode(false)}>Cancel</button>
+                    </form>
+                </div>
+            </div>}
             {props.message.reply_content && <div className="text-gray-400 pb-1">
                 <div className="flex"><img src={profilePic} className="w-[20px] h-[20px]  rounded-full mx-2" /><span className="font-bold pr-2">@{props.message.reply_username}</span> {props.message.reply_content}</div>
             </div>}
@@ -72,11 +83,9 @@ export default function Message(props) {
                         </div>
                         <div className=" edit-delete hidden group-hover:flex opacity-100 transition-opacity">
                             {!editMode && <div onClick={() => setEditMode(true)} className="flex edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl hover:bg-slate-700 transition-all ease duration-300">Edit <MdModeEditOutline size={20} className="ml-2" /></div>}
-                            {!editMode && <form onSubmit={handleEditMessage}>
-                                <input name="content" id="content" defaultValue="[this message was deleted]" className="hidden" />
-                                <input name="messageid" id="messageid" defaultValue={`${props.message.message_id}`} className="hidden" />
-                                <button type="submit" className="flex delete-btn cursor-pointer px-2 mx-1 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300">Delete <FaTrashCan size={20} className="ml-2 pt-1" /></button>
-                            </form>}
+                            {!editMode &&
+                                <button onClick={() => setDeleteMode(true)} className="flex delete-btn cursor-pointer px-2 mx-1 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300">Delete <FaTrashCan size={20} className="ml-2 pt-1" /></button>
+                            }
                         </div>
                     </div>
                     {!editMode && <div>
