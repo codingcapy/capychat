@@ -49,14 +49,6 @@ export default function Messages(props) {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
-    // useEffect(() => {
-    //     async function getChat() {
-    //         const res = await axios.get(`${DOMAIN}/api/chats/${props.currentChat.chat_id}`)
-    //         props.setCurrentChat(res.data)
-    //     }
-    //     getChat();
-    // }, [props.currentChat])
-
     async function handleLeaveChat() {
         const content = `${props.user.username} left the chat`;
         const currentUser = "notification";
@@ -81,6 +73,8 @@ export default function Messages(props) {
         if (res?.data.success) {
             const newChats = await axios.get(`${DOMAIN}/api/chats/user/${props.user.user_id}`);
             props.setChats(newChats.data);
+            const newChat = await axios.get(`${DOMAIN}/api/chats/${props.currentChat.chat_id}`)
+            props.setCurrentChat(newChat.data);
             setEditMode(false);
             socket.emit("chat", chat);
         }
