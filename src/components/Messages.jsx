@@ -76,11 +76,13 @@ export default function Messages(props) {
             </div>}
             <div className="sticky top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
             <div className="overflow-hidden">
-                {leaveChatMode && <div className="absolute z-[99] py-12 px-2 md:px-10 bg-slate-800 border border-white md:top-[20%] md:left-[40%] flex flex-col">
+                {leaveChatMode && <div className="absolute z-[99] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[20%] md:left-[40%] flex flex-col">
                     <div className="py-2">Are you sure you want to leave chat?</div>
                     <div className="mx-auto py-2">
-                        <button onClick={handleLeaveChat} className="edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
-                        <button onClick={() => setLeaveChatMode(false)} className="delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300">No</button>
+                        <button onClick={handleLeaveChat} className="hidden md:block edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
+                        <button onClick={() => setLeaveChatMode(false)} className="hidden md:block delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300">No</button>
+                        <button onClick={() => setLeaveChatMode(false)} className="md:hidden delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300">No</button>
+                        <button onClick={handleLeaveChat} className="md:hidden edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
                     </div>
                 </div>}
                 {props.currentMessages.map((message) =>

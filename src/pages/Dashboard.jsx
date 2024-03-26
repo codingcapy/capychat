@@ -194,7 +194,7 @@ export default function Dashboard() {
         }
     }
 
-    function handleLogout(){
+    function handleLogout() {
         logoutService();
         navigate('/capychat/')
     }
@@ -254,15 +254,17 @@ export default function Dashboard() {
     return (
         <div className="flex flex-col fixed min-h-full min-w-full mx-auto bg-slate-800 text-white">
             <main className="flex-1">
-            {logoutMode && <div className="absolute z-[99] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[35%] left-[13%] md:left-[40%] flex flex-col">
-                <div className="py-2">Are you sure you want to logout?</div>
-                <div className="mx-auto py-2">
-                    <form onSubmit={handleLogout}>
-                        <button type="submit" className="edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
-                        <button className="delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setLogoutMode(false)}>No</button>
-                    </form>
-                </div>
-            </div>}
+                {logoutMode && <div className="absolute z-[99] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[35%] left-[13%] md:left-[40%] flex flex-col">
+                    <div className="py-2">Are you sure you want to logout?</div>
+                    <div className="mx-auto py-2">
+                        <form onSubmit={handleLogout}>
+                            <button type="submit" className="hidden md:block edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
+                            <button className="hidden md:block delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setLogoutMode(false)}>No</button>
+                            <button className="md:hidden delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setLogoutMode(false)}>No</button>
+                            <button type="submit" className="md:hidden edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
+                        </form>
+                    </div>
+                </div>}
                 <div className="hidden md:flex">
                     <div className="flex">
                         <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} user={user} friends={friends} setFriends={setFriends} />
@@ -276,7 +278,7 @@ export default function Dashboard() {
                         {showProfile && <Profile />}
                         <div className="flex flex-col">
                             <div onClick={clickedProfile} className="flex px-2 py-5 rounded-xl hover:bg-slate-600 transition-all ease duration-300 font-bold cursor-pointer"><CgProfile size={25} className="text-center mx-2" />{user.username}</div>
-                            <button onClick={()=>setLogoutMode(true)} className="flex px-5 py-1 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Logout<IoExitOutline size={25} className="text-center mx-2" /></button>
+                            <button onClick={() => setLogoutMode(true)} className="flex px-5 py-1 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Logout<IoExitOutline size={25} className="text-center mx-2" /></button>
                         </div>
                     </div>
                 </div>
@@ -303,7 +305,7 @@ export default function Dashboard() {
                     <CgProfile size={25} className="text-center mx-2" />
                     <p className="text-center text-xs">You</p>
                 </div>
-                <div onClick={()=>setLogoutMode(true)} className="text-xs">
+                <div onClick={() => setLogoutMode(true)} className="text-xs">
                     <IoExitOutline size={25} className="text-center mx-2" />Logout
                 </div>
             </div>
