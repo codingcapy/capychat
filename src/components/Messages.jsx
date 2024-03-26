@@ -49,13 +49,13 @@ export default function Messages(props) {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
-    useEffect(() => {
-        async function getChat() {
-            const res = await axios.get(`${DOMAIN}/api/chats/${props.currentChat.chat_id}`)
-            props.setCurrentChat(res.data)
-        }
-        getChat();
-    }, [props.currentChat])
+    // useEffect(() => {
+    //     async function getChat() {
+    //         const res = await axios.get(`${DOMAIN}/api/chats/${props.currentChat.chat_id}`)
+    //         props.setCurrentChat(res.data)
+    //     }
+    //     getChat();
+    // }, [props.currentChat])
 
     async function handleLeaveChat() {
         const content = `${props.user.username} left the chat`;
