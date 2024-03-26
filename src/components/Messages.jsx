@@ -101,7 +101,7 @@ export default function Messages(props) {
             </div>}
             <div className="sticky top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
             <div className="overflow-hidden">
-                {leaveChatMode && <div className="absolute z-[99] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[20%] md:left-[40%] flex flex-col">
+                {leaveChatMode && <div className="absolute z-[201] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[20%] md:left-[40%] flex flex-col">
                     <div className="py-2">Are you sure you want to leave chat?</div>
                     <div className="mx-auto py-2">
                         <button onClick={handleLeaveChat} className="hidden md:block md:pb-1 edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
@@ -110,6 +110,7 @@ export default function Messages(props) {
                         <button onClick={handleLeaveChat} className="md:hidden edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Yes</button>
                     </div>
                 </div>}
+                {leaveChatMode && <div className="fixed inset-0 bg-black z-[200] opacity-70"></div>}
                 {props.currentMessages.map((message) =>
                     props.user.username === message.username
                         ? <Message key={message.message_id} currentMessages={props.currentMessages} currentChat={props.currentChat} message={message} setCurrentMessages={props.setCurrentMessages} />

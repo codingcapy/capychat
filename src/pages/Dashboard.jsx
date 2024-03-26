@@ -254,7 +254,7 @@ export default function Dashboard() {
     return (
         <div className="flex flex-col fixed min-h-full min-w-full mx-auto bg-slate-800 text-white">
             <main className="flex-1">
-                {logoutMode && <div className="absolute z-[99] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[35%] left-[13%] md:left-[40%] flex flex-col">
+                {logoutMode && <div className="absolute z-[201] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[35%] left-[13%] md:left-[40%] flex flex-col">
                     <div className="py-2">Are you sure you want to logout?</div>
                     <div className="mx-auto py-2">
                         <form onSubmit={handleLogout}>
@@ -265,6 +265,7 @@ export default function Dashboard() {
                         </form>
                     </div>
                 </div>}
+                {logoutMode && <div className="fixed inset-0 bg-black z-[200] opacity-70"></div>}
                 <div className="hidden md:flex">
                     <div className="flex">
                         <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} user={user} friends={friends} setFriends={setFriends} />

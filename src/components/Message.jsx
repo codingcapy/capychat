@@ -61,7 +61,7 @@ export default function Message(props) {
 
     return (
         <div className="py-2 message-container group hover:bg-slate-600 transition-all ease duration-300">
-            {deleteMode && <div className="absolute z-[99] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[35%] md:left-[40%] flex flex-col">
+            {deleteMode && <div className="absolute z-[201] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[35%] md:left-[40%] flex flex-col">
                 <div className="py-2">Are you sure you want to delete?</div>
                 <div className="mx-auto py-2">
                     <form onSubmit={handleEditMessage}>
@@ -74,6 +74,7 @@ export default function Message(props) {
                     </form>
                 </div>
             </div>}
+            {deleteMode && <div className="fixed inset-0 bg-black z-[200] opacity-70"></div>}
             {props.message.reply_content && <div className="text-gray-400 pb-1">
                 <div className="flex"><img src={profilePic} className="w-[20px] h-[20px]  rounded-full mx-2" /><span className="font-bold pr-2">@{props.message.reply_username}</span> {props.message.reply_content}</div>
             </div>}
