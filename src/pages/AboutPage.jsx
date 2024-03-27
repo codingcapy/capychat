@@ -16,11 +16,11 @@ export default function AboutPage() {
         <div className="flex flex-col min-h-screen ">
             <Header />
             <main className="flex-1 mx-auto text-center max-w-screen-xl">
-                <h1 className="text-3xl font-bold text-center py-5 ">
+                <h1 className="text-3xl font-bold text-center py-5 text-indigo-600">
                     About CapyChat
                 </h1>
                 <p className="py-2">CapyChat is a chat application developed in 2024 by Paul Sunghun Kim that allows you to communicate with your friends, family, coworkers, and loved ones. This web app uses clean, simple features that are easy for you to use and understand.</p>
-                <h1 className="text-3xl font-bold text-center py-5 ">
+                <h1 className="text-3xl font-bold text-center py-5 text-indigo-600">
                     Meet the Developer!
                 </h1>
                 <img src={paulImg} className="max-w-30 md:max-w-xs rounded-full mx-auto" />

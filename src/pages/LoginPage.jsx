@@ -40,7 +40,7 @@ export default function LoginPage() {
             <Header />
             <main className="flex-1 mx-auto">
                 <form onSubmit={onLogin} className="flex flex-col">
-                    <h2 className="py-10 text-2xl text-slate-700 font-medium text-center">Login</h2>
+                    <h2 className="py-10 text-2xl text-indigo-600 font-medium text-center">Login</h2>
                     <div className="flex flex-col">
                         <label htmlFor="username">Username</label>
                         <input type="text" name="username" id="username" placeholder="Username" required className="px-2 border rounded-lg border-slate-700 py-1" />
