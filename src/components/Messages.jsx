@@ -22,14 +22,19 @@ const socket = io("https://capychat-server-production.up.railway.app");
 export default function Messages(props) {
 
     const [isMenuSticky, setIsMenuSticky] = useState(false);
-    const [leaveChatMode, setLeaveChatMode] = useState(false)
-    const [menuMode, setMenuMode] = useState(false)
-    const [editMode, setEditMode] = useState(false)
+    const [leaveChatMode, setLeaveChatMode] = useState(false);
+    const [menuMode, setMenuMode] = useState(false);
+    const [editMode, setEditMode] = useState(false);
+    const [inviteFriendMode, setInviteFriendMode] = useState(false);
     const [chatTitle, setChatTitle] = useState(props.currentChat.title)
     const messagesEndRef = useRef(null);
 
     function toggleMenuMode() {
         setMenuMode(!menuMode)
+    }
+
+    function toggleInviteMode() {
+        setInviteFriendMode(!inviteFriendMode)
     }
 
     useEffect(() => {
@@ -83,6 +88,18 @@ export default function Messages(props) {
         }
     }
 
+    async function handleAddFriendToChat(e) {
+        e.preventDefault();
+        const friend = e.target.friend.value;
+        // const res = await axios.post(`${DOMAIN}/api/chats/add/${props.currentChat.chat_id}`, friend);
+        // if (res?.data.success) {
+        //     setInviteFriendMode(false)
+        // }
+        // else {
+        //     setInputMessage("");
+        // }
+    }
+
     return (
         <div className="px-5 border-2 border-slate-600 mx-auto bg-slate-800 w-[330px] md:w-[900px] h-[77vh] md:h-screen overflow-y-auto">
             <div className="flex justify-between py-5 sticky top-0 bg-slate-800">
@@ -99,7 +116,12 @@ export default function Messages(props) {
             {menuMode && <div className="sticky top-16 bg-slate-900 z-[99]">
                 <button onClick={() => setLeaveChatMode(true)} className="absolute right-0 flex delete-btn cursor-pointer px-2 mx-1 bg-red-900 rounded-xl hover:bg-red-600 transition-all ease duration-300 z-[99]">Leave Chat<IoExitOutline size={25} className="text-center ml-2" /></button>
             </div>}
-            <div className="sticky top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
+            <div onClick={toggleInviteMode} className="sticky top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
+            {inviteFriendMode && <form onSubmit={handleAddFriendToChat} className="sticky top-32 bg-slate-800 py-2">
+                <input name="friend" className=" px-2 rounded-xl text-black" />
+                <button type="submit" className="edit-btn cursor-pointer px-5 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Invite</button>
+                <button onClick={() => setInviteFriendMode(false)} className=" delete-btn cursor-pointer px-2 mx-1 bg-red-900 rounded-xl hover:bg-red-600 transition-all ease duration-300">Cancel</button>
+            </form>}
             <div className="overflow-hidden">
                 {leaveChatMode && <div className="absolute z-[201] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[20%] md:left-[40%] flex flex-col">
                     <div className="py-2">Are you sure you want to leave chat?</div>
