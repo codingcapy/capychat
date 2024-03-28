@@ -27,6 +27,7 @@ export default function Messages(props) {
     const [editMode, setEditMode] = useState(false);
     const [inviteFriendMode, setInviteFriendMode] = useState(false);
     const [chatTitle, setChatTitle] = useState(props.currentChat.title)
+    const [notification, setNotification] = useState("")
     const messagesEndRef = useRef(null);
 
     function toggleMenuMode() {
@@ -84,20 +85,31 @@ export default function Messages(props) {
             socket.emit("chat", chat);
         }
         else {
-            setInputMessage("");
+            setNotification("");
         }
     }
 
     async function handleAddFriendToChat(e) {
         e.preventDefault();
         const friend = e.target.friend.value;
-        // const res = await axios.post(`${DOMAIN}/api/chats/add/${props.currentChat.chat_id}`, friend);
-        // if (res?.data.success) {
-        //     setInviteFriendMode(false)
-        // }
-        // else {
-        //     setInputMessage("");
-        // }
+        const username = props.user.username
+        const res = await axios.post(`${DOMAIN}/api/chats/chat/add/${props.currentChat.chat_id}`, { friend, user: username });
+        if (res?.data.success) {
+            setInviteFriendMode(false)
+            const content = `${friend} entered the chat`;
+            const currentUser = "notification";
+            const message = { content, user: currentUser, chatId: props.currentChat.chat_id };
+            await axios.post(`${DOMAIN}/api/messages`, message);
+            socket.emit("message", message);
+            const response = await axios.get(`${DOMAIN}/api/chats/user/${props.user.user_id}`)
+            props.setChats(response.data);
+            const newChat = await axios.get(`${DOMAIN}/api/chats/${props.currentChat.chat_id}`)
+            props.setCurrentChat(newChat.data);
+            socket.emit("chat", props.currentChat);
+        }
+        else {
+            setNotification(res.data.message);
+        }
     }
 
     return (
@@ -121,6 +133,7 @@ export default function Messages(props) {
                 <input name="friend" className=" px-2 rounded-xl text-black" />
                 <button type="submit" className="edit-btn cursor-pointer px-5 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Invite</button>
                 <button onClick={() => setInviteFriendMode(false)} className=" delete-btn cursor-pointer px-2 mx-1 bg-red-900 rounded-xl hover:bg-red-600 transition-all ease duration-300">Cancel</button>
+                {notification}
             </form>}
             <div className="overflow-hidden">
                 {leaveChatMode && <div className="absolute z-[201] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[20%] md:left-[40%] flex flex-col">
