@@ -116,14 +116,20 @@ export default function Messages(props) {
         <div className="px-5 border-2 border-slate-600 mx-auto bg-slate-800 w-[330px] md:w-[900px] h-[77vh] md:h-screen overflow-y-auto">
             <div className="flex justify-between py-5 sticky top-0 bg-slate-800">
                 {!editMode && <div className="flex text-xl"><IoChatbubbleEllipsesOutline size={25} className="text-center mx-2" />{props.currentChat.title} <button onClick={() => setEditMode(true)}><MdModeEditOutline size={20} className="ml-2" /></button></div>}
-                <form onSubmit={handleEditChat}>
-                    {editMode && <div className="flex text-xl">
+                {editMode &&
+                    <form onSubmit={handleEditChat}><div className="flex text-xl">
                         <IoChatbubbleEllipsesOutline size={25} className="text-center mx-2" />
                         <input type="text" name="title" id="title" value={chatTitle} onChange={(e) => setChatTitle(e.target.value)} className="text-black" />
-                        <button type="submit" className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</button>
-                        <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl" onClick={() => setEditMode(false)}>Cancel</button>
-                    </div>}
-                </form>
+                        <div className="hidden md:block">
+                            <button type="submit" className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</button>
+                            <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl" onClick={() => setEditMode(false)}>Cancel</button>
+                        </div>
+                    </div>
+                        <div className="py-2 md:hidden">
+                            <button type="submit" className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</button>
+                            <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl" onClick={() => setEditMode(false)}>Cancel</button>
+                        </div>
+                    </form>}
                 <div>
                     <button onClick={toggleMenuMode} className="bg-slate-800 hover:bg-slate-600 transition-all ease duration-300 py-2 px-2 rounded-full"><FaEllipsis /></button>
                 </div>
