@@ -137,7 +137,7 @@ export default function Messages(props) {
             {menuMode && <div className="sticky top-16 bg-slate-900 z-[99]">
                 <button onClick={() => setLeaveChatMode(true)} className="absolute right-0 flex delete-btn cursor-pointer px-2 mx-1 bg-red-900 rounded-xl hover:bg-red-600 transition-all ease duration-300 z-[99]">Leave Chat<IoExitOutline size={25} className="text-center ml-2" /></button>
             </div>}
-            <div onClick={toggleInviteMode} className="sticky top-[80px] md:top-16 bg-slate-800 py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
+            <div onClick={toggleInviteMode} className="sticky top-[80px] md:top-16 bg-slate-800 py-1 md:py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
             {inviteFriendMode && <form onSubmit={handleAddFriendToChat} className="sticky top-32 bg-slate-800 py-2">
                 <input name="friend" className=" px-2 rounded-xl text-black" />
                 <button type="submit" className="edit-btn cursor-pointer px-5 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Invite</button>
