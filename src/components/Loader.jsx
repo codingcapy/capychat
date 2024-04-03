@@ -1,4 +1,11 @@
 
+/*
+author: Paul Kim
+date: February 8, 2024
+version: 1.0
+description: loader component for CapyChat client
+ */
+
 import { BiLoaderCircle } from "react-icons/bi";
 
 import Footer from "./Footer";

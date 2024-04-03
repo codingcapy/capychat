@@ -1,4 +1,10 @@
 
+/*
+author: Paul Kim
+date: February 8, 2024
+version: 1.0
+description: forgot password page for CapyChat client
+ */
 
 import { NavLink, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
