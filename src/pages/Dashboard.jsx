@@ -43,6 +43,7 @@ export default function Dashboard() {
     const [inputChat, setInputChat] = useState("");
     const [inputMessage, setInputMessage] = useState("");
     const [logoutMode, setLogoutMode] = useState(false);
+    const [messageTooLong, setMessageTooLong] = useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -155,8 +156,6 @@ export default function Dashboard() {
         tappedChats();
     }
 
-    const [message, setMessage] = useState("");
-
     async function handleCreateChat(e) {
         e.preventDefault();
         const currentUser = user.username;
@@ -177,10 +176,25 @@ export default function Dashboard() {
         }
     }
 
+    function sanitizeInput(input) {
+        return input.replace(/[&<>"']/g, function(match) {
+            return {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            }[match];
+        });
+    }
+
     async function handleCreateMessage(e) {
         e.preventDefault();
         const content = e.target.content.value;
         const currentUser = user.username;
+        if (content.length > 25000){
+            return setMessageTooLong(true)
+        }
         const message = { content, user: currentUser, chatId: currentChat.chat_id };
         const res = await axios.post(`${DOMAIN}/api/messages`, message);
         if (res?.data.success) {
@@ -266,6 +280,13 @@ export default function Dashboard() {
                     </div>
                 </div>}
                 {logoutMode && <div className="fixed inset-0 bg-black z-[200] opacity-70"></div>}
+                {messageTooLong && <div className="absolute z-[201] py-12 px-2 md:px-10 bg-slate-800 border border-white top-[20%] md:left-[40%] flex flex-col">
+                    <div className="py-2">Your message is too long!</div>
+                    <div className="mx-auto py-2">
+                        <button onClick={()=>setMessageTooLong(false)} className="hidden md:block md:pb-1 edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">OK</button>
+                    </div>
+                </div>}
+                {messageTooLong && <div className="fixed inset-0 bg-black z-[200] opacity-70"></div>}
                 <div className="hidden md:flex">
                     <div className="flex">
                         <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} user={user} friends={friends} setFriends={setFriends} />
@@ -273,9 +294,9 @@ export default function Dashboard() {
                         {showDefault && <div className="px-5 border-2 border-slate-600 bg-slate-800 min-w-full h-screen overflow-y-auto">
                             <div className="flex text-xl sticky top-0 bg-slate-800 py-5"><IoChatbubbleOutline size={25} className="mx-2" />Messages</div>
                         </div>}
-                        {showMessages && <Messages currentChat={currentChat} user={user} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} setCurrentChat={setCurrentChat} />}
+                        {showMessages && <Messages currentChat={currentChat} user={user} handleCreateMessage={handleCreateMessage} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} setCurrentChat={setCurrentChat} />}
                         {showAddFriend && <AddFriend setFriends={setFriends} user={user} friends={friends} />}
-                        {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
+                        {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} inputChat={inputChat} setInputChat={setInputChat} />}
                         {showProfile && <Profile />}
                         <div className="flex flex-col">
                             <div onClick={clickedProfile} className="flex px-2 py-5 rounded-xl hover:bg-slate-600 transition-all ease duration-300 font-bold cursor-pointer"><CgProfile size={25} className="text-center mx-2" />{user.username}</div>
@@ -286,9 +307,9 @@ export default function Dashboard() {
                 <div className="px-3 flex flex-col md:hidden">
                     {chatsMode && <Chats chats={chats} clickedChat={clickedChat} />}
                     {friendsMode && <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} user={user} friends={friends} setFriends={setFriends} />}
-                    {showMessages && <Messages currentChat={currentChat} user={user} handleCreateMessage={handleCreateMessage} message={message} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} setCurrentChat={setCurrentChat} />}
+                    {showMessages && <Messages currentChat={currentChat} user={user} handleCreateMessage={handleCreateMessage} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} setCurrentChat={setCurrentChat} />}
                     {showAddFriend && <AddFriend setFriends={setFriends} user={user} />}
-                    {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} message={message} inputChat={inputChat} setInputChat={setInputChat} />}
+                    {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} inputChat={inputChat} setInputChat={setInputChat} />}
                     {showProfile && <Profile />}
                 </div>
             </main>
