@@ -10,6 +10,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import useAuthStore from "../store/AuthStore";
+import { useEffect } from "react";
 
 export default function HomePage() {
 
