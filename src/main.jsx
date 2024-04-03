@@ -13,7 +13,7 @@ import './index.css';
 import Auth from './components/Auth/Auth.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-
-    <App />
-
+    <Auth>
+        <App />
+    </Auth>
 )

@@ -6,7 +6,7 @@ version: 1.0
 description: home page for CapyChat client
  */
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import useAuthStore from "../store/AuthStore";
@@ -14,6 +14,14 @@ import useAuthStore from "../store/AuthStore";
 export default function HomePage() {
 
     const { user } = useAuthStore((state) => state);
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if (user){
+            navigate(`dashboard/${user.user_id}`)
+        }    
+    }
+    ,[])
 
     return (
         <div className="flex flex-col fixed min-h-full min-w-full">
