@@ -41,9 +41,9 @@ export default function Profile() {
         <div className="px-5 border-2 border-slate-600 md:w-[900px] h-[89vh] md:h-screen overflow-y-auto">
             <h1 className="flex text-3xl font-bold text-center py-5 "><CgProfile size={35} className="text-center mx-2" />Your Profile</h1>
             <img src={profilePic} className="max-w-30 md:max-w-xs rounded-full mx-auto pb-2" />
-            <p className="my-3">Username: {user.username}</p>
-            <p className="my-3">Member Since: {user.created_at.slice(0, 10)}</p>
-            <button className="block rounded-xl my-2 py-2 px-2 bg-slate-700 text-white" >Change Username</button>
+            <p className="my-1 md:my-3">Username: {user.username}</p>
+            <p className="my-1 md:my-3">Member Since: {user.created_at.slice(0, 10)}</p>
+            <button className="block rounded-xl my-1 md:my-2 py-2 px-2 bg-slate-700 text-white" >Change Username</button>
             {editMode
                 ? <form onSubmit={handleEditPassword} className="flex flex-col">
                     <input type="password" id="password" name="password" placeholder="New Password" required className="px-2 border rounded-lg border-slate-700 py-1 text-black" />
@@ -51,7 +51,7 @@ export default function Profile() {
                     <button className="" onClick={toggleEditMode}>Cancel</button>
                 </form>
                 :
-                <button className="rounded-xl my-2 py-2 px-2 bg-slate-700 text-white" onClick={toggleEditMode}>Change password</button>}
+                <button className="rounded-xl my-1 md:my-2 py-2 px-2 bg-slate-700 text-white" onClick={toggleEditMode}>Change password</button>}
             <p>{message}</p>
         </div>
     )
