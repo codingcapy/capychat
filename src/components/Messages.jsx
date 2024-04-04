@@ -119,7 +119,7 @@ export default function Messages(props) {
                 {editMode &&
                     <form onSubmit={handleEditChat}><div className="flex text-xl">
                         <IoChatbubbleEllipsesOutline size={25} className="text-center mx-2" />
-                        <input type="text" name="title" id="title" value={chatTitle} onChange={(e) => setChatTitle(e.target.value)} className="text-black" />
+                        <input type="text" name="title" id="title" value={chatTitle} onChange={(e) => setChatTitle(e.target.value)} className="text-black w-[150px] md:w-[230px]" />
                         <div className="hidden md:block">
                             <button type="submit" className="edit-btn cursor-pointer px-2 mr-1 bg-slate-800 rounded-xl">Edit</button>
                             <button className="delete-btn cursor-pointer px-2 mx-1 bg-red-600 rounded-xl" onClick={() => setEditMode(false)}>Cancel</button>
