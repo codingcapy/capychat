@@ -38,8 +38,8 @@ export default function FriendProfile(props) {
                     <form onSubmit={handleBlock} className="md:flex md:flex-col">
                         <button className="hidden md:block delete-btn cursor-pointer px-5 py-2 md:my-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" >Block</button>
                         <button className="hidden md:block md:pb-1 edit-btn cursor-pointer px-5 py-2 md:my-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300" onClick={() => setBlockMode(false)}>Cancel</button>
-                        <button className="md:hidden edit-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300" onClick={() => setBlockMode(false)}>Cancel</button>
-                        <button className="md:hidden delete-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setDeleteMode(false)}>Block</button>
+                        <button className="md:hidden edit-btn cursor-pointer px-5 mr-1 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300" onClick={() => setBlockMode(false)}>Cancel</button>
+                        <button className="md:hidden delete-btn cursor-pointer px-5 mr-1 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setDeleteMode(false)}>Block</button>
                     </form>
                 </div>
             </div>}
@@ -50,8 +50,8 @@ export default function FriendProfile(props) {
                     <form onSubmit={handleUnblock} className="md:flex md:flex-col">
                         <button className="hidden md:block delete-btn cursor-pointer px-5 py-2 md:my-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300" >Unblock</button>
                         <button className="hidden md:block md:pb-1 edit-btn cursor-pointer px-5 py-2 md:my-2 bg-red-800 rounded-xl hover:bg-red-600  transition-all ease duration-300" onClick={() => setBlockMode(false)}>Cancel</button>
-                        <button className="md:hidden edit-btn cursor-pointer px-5 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setBlockMode(false)}>Cancel</button>
-                        <button className="md:hidden delete-btn cursor-pointer px-5 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300" onClick={() => setDeleteMode(false)}>Unblock</button>
+                        <button className="md:hidden edit-btn cursor-pointer px-5 py-2 mr-1 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setBlockMode(false)}>Cancel</button>
+                        <button className="md:hidden delete-btn cursor-pointer px-5 py-2 mr-1 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300" onClick={() => setDeleteMode(false)}>Unblock</button>
                     </form>
                 </div>
             </div>}
