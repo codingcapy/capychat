@@ -18,14 +18,16 @@ export default function FriendProfile(props) {
 
     function handleBlock(e) {
         e.preventDefault();
-        // const res = await axios.post(`${DOMAIN}/api/users/block`);
+        // const userId = props.user.user_id;
+        // const res = await axios.post(`${DOMAIN}/api/users/block/${props.friendName}`, userId);
         setBlocked(true);
         setBlockMode(false);
     }
 
     function handleUnblock(e) {
         e.preventDefault();
-        // const res = await axios.post(`${DOMAIN}/api/users/unblock`);
+        // const userId = props.user.user_id;
+        // const res = await axios.post(`${DOMAIN}/api/users/unblock/${props.friendName}`, userId);
         setBlocked(false);
         setUnblockMode(false);
     }
@@ -59,7 +61,7 @@ export default function FriendProfile(props) {
             <p className="flex py-5 text-xl"><CgProfile size={25} className="text-center mx-2" />{props.friendName}</p>
             <img src={profilePic} className="max-w-30 md:max-w-xs rounded-full mx-auto pb-2" />
             {blocked && <div className="rounded-2xl my-5 py-2 px-2  text-red-500" >BLOCKED</div>}
-            {blocked && <button className="rounded-xl my-5 py-2 px-2 bg-slate-700 text-white" onClick={()=>setUnblockMode(true)}>Unblock</button>}
+            {blocked && <button className="rounded-xl my-5 py-2 px-2 bg-slate-700 text-white" onClick={() => setUnblockMode(true)}>Unblock</button>}
             {!blocked && <button className="rounded-xl my-5 py-2 px-2 bg-slate-700 text-white" onClick={props.handleCreateChat}>Start Chat</button>}
             <br />
             {!blocked && <button className="rounded-xl my-5 py-2 px-2 bg-red-900 text-white" onClick={() => setBlockMode(true)}>Block</button>}
