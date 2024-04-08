@@ -9,6 +9,8 @@ description: friend profile component for CapyChat client
 import { CgProfile } from "react-icons/cg";
 import profilePic from "/capypaul01.jpg";
 import { useState } from "react";
+import axios from "axios";
+import DOMAIN from "../services/endpoint";
 
 export default function FriendProfile(props) {
 
@@ -16,20 +18,30 @@ export default function FriendProfile(props) {
     const [blockMode, setBlockMode] = useState(false)
     const [unblockMode, setUnblockMode] = useState(false)
 
-    function handleBlock(e) {
+    async function handleBlock(e) {
         e.preventDefault();
-        // const userId = props.user.user_id;
-        // const res = await axios.post(`${DOMAIN}/api/users/block/${props.friendName}`, userId);
-        setBlocked(true);
-        setBlockMode(false);
+        const userId = props.user.user_id;
+        const res = await axios.post(`${DOMAIN}/api/users/block/${props.friendName}`, { userId });
+        if (res?.data.success) {
+            setBlocked(true);
+            setBlockMode(false);
+        }
+        else {
+            console.log(res.data.message);
+        }
     }
 
-    function handleUnblock(e) {
+    async function handleUnblock(e) {
         e.preventDefault();
-        // const userId = props.user.user_id;
-        // const res = await axios.post(`${DOMAIN}/api/users/unblock/${props.friendName}`, userId);
-        setBlocked(false);
-        setUnblockMode(false);
+        const userId = props.user.user_id;
+        const res = await axios.post(`${DOMAIN}/api/users/unblock/${props.friendName}`, { userId });
+        if (res?.data.success) {
+            setBlocked(false);
+            setUnblockMode(false);
+        }
+        else {
+            console.log(res.data.message);
+        }
     }
 
     return (
@@ -41,7 +53,7 @@ export default function FriendProfile(props) {
                         <button className="hidden md:block delete-btn cursor-pointer px-5 py-2 md:my-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" >Block</button>
                         <button className="hidden md:block md:pb-1 edit-btn cursor-pointer px-5 py-2 md:my-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300" onClick={() => setBlockMode(false)}>Cancel</button>
                         <button className="md:hidden edit-btn cursor-pointer px-5 mr-1 py-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300" onClick={() => setBlockMode(false)}>Cancel</button>
-                        <button className="md:hidden delete-btn cursor-pointer px-5 mr-1 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setDeleteMode(false)}>Block</button>
+                        <button className="md:hidden delete-btn cursor-pointer px-5 mr-1 py-2 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300">Block</button>
                     </form>
                 </div>
             </div>}
@@ -50,10 +62,10 @@ export default function FriendProfile(props) {
                 <div className="py-2">Are you sure you want to unblock?</div>
                 <div className="mx-auto py-2">
                     <form onSubmit={handleUnblock} className="md:flex md:flex-col">
-                        <button className="hidden md:block delete-btn cursor-pointer px-5 py-2 md:my-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300" >Unblock</button>
-                        <button className="hidden md:block md:pb-1 edit-btn cursor-pointer px-5 py-2 md:my-2 bg-red-800 rounded-xl hover:bg-red-600  transition-all ease duration-300" onClick={() => setBlockMode(false)}>Cancel</button>
-                        <button className="md:hidden edit-btn cursor-pointer px-5 py-2 mr-1 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setBlockMode(false)}>Cancel</button>
-                        <button className="md:hidden delete-btn cursor-pointer px-5 py-2 mr-1 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300" onClick={() => setDeleteMode(false)}>Unblock</button>
+                        <button type="submit" className="hidden md:block delete-btn cursor-pointer px-5 py-2 md:my-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300" >Unblock</button>
+                        <button className="hidden md:block md:pb-1 edit-btn cursor-pointer px-5 py-2 md:my-2 bg-red-800 rounded-xl hover:bg-red-600  transition-all ease duration-300" onClick={() => setUnblockMode(false)}>Cancel</button>
+                        <button className="md:hidden edit-btn cursor-pointer px-5 py-2 mr-1 bg-red-800 rounded-xl hover:bg-red-600 transition-all ease duration-300" onClick={() => setUnblockMode(false)}>Cancel</button>
+                        <button className="md:hidden delete-btn cursor-pointer px-5 py-2 mr-1 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all ease duration-300">Unblock</button>
                     </form>
                 </div>
             </div>}
