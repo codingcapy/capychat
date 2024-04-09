@@ -8,7 +8,7 @@ description: friend profile component for CapyChat client
 
 import { CgProfile } from "react-icons/cg";
 import profilePic from "/capypaul01.jpg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import DOMAIN from "../services/endpoint";
 
@@ -43,6 +43,20 @@ export default function FriendProfile(props) {
             console.log(res.data.message);
         }
     }
+
+    useEffect(() => {
+        async function getUserFriend() {
+            const userId = props.user.user_id;
+            const userFriend = await axios.post(`${DOMAIN}/api/users/userfriend/${props.friendName}`, {userId});
+            if(userFriend.data.blocked){
+                setBlocked(true);
+            }
+            else{
+                setBlocked(false);
+            }
+        }
+        getUserFriend()
+    }, [props.friendName])
 
     return (
         <div className="px-5 border-2 border-slate-600 md:w-[900px] h-[89vh] md:h-screen overflow-y-auto">
