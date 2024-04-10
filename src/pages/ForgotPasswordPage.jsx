@@ -49,7 +49,7 @@ export default function ForgotPasswordPage() {
                     </form>}
                     <p className="text-xl">{message}</p>
                     {emailSent && <div className="mx-auto border rounded-xl py-5 px-5 my-5 bg-indigo-600 w-[100px] text-white text-center">
-                        <NavLink to="/capytalk/users/login">Login</NavLink>
+                        <NavLink to="/capychat/users/login">Login</NavLink>
                     </div>}
                     <div>Returning User? <NavLink to="/capychat/users/login" className="text-center text-indigo-600">Login</NavLink></div>
                     <div>New User? <NavLink to="/capychat/users/signup" className="text-center text-indigo-600">Sign Up</NavLink></div>
