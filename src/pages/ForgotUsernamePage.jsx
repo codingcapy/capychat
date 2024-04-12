@@ -11,6 +11,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 import useAuthStore from "../store/AuthStore";
+import axios from "axios";
+import DOMAIN from "../services/endpoint";
 
 export default function ForgotUsernamePage() {
 
