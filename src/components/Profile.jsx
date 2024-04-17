@@ -44,7 +44,7 @@ export default function Profile() {
         const userId = user.user_id
         const updatedUsername = { username };
         const res = await axios.post(`${DOMAIN}/api/users/update/${userId}`, updatedUsername);
-        toggleEditPasswordMode();
+        setEditUsernameMode(false);
         setMessage("Username updated successfully!")
         if (res?.data.success) {
             navigate(`/capychat/dashboard/${userId}`);
@@ -63,7 +63,7 @@ export default function Profile() {
                     <button type="submit" className="rounded-xl my-5 py-2 px-2 bg-slate-700 text-white" >Change Username</button>
                     <button className="" onClick={()=>setEditUsernameMode(false)}>Cancel</button>
                 </form>
-                : <button className="block rounded-xl my-1 md:my-2 py-2 px-2 bg-slate-700 text-white" onClick={()=>setEditUsernameMode(true)}>Username password</button>}
+                : <button className="block rounded-xl my-1 md:my-2 py-2 px-2 bg-slate-700 text-white" onClick={()=>setEditUsernameMode(true)}>Change Username</button>}
             {editPasswordMode
                 ? <form onSubmit={handleEditPassword} className="flex flex-col">
                     <input type="password" id="password" name="password" placeholder="New Password" required className="px-2 border rounded-lg border-slate-700 py-1 text-black" />
