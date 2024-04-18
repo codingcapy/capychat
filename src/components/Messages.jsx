@@ -16,6 +16,7 @@ import { LuSendHorizonal } from "react-icons/lu";
 import MessageFriend from "./MessageFriend";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaEllipsis } from "react-icons/fa6";
+import profilePic from "/capypaul01.jpg";
 
 const socket = io("https://capychat-server-production.up.railway.app");
 
@@ -28,6 +29,7 @@ export default function Messages(props) {
     const [inviteFriendMode, setInviteFriendMode] = useState(false);
     const [chatTitle, setChatTitle] = useState(props.currentChat.title)
     const [notification, setNotification] = useState("")
+    const [participants, setParticipants] = useState([])
     const messagesEndRef = useRef(null);
 
     function toggleMenuMode() {
@@ -89,6 +91,14 @@ export default function Messages(props) {
         }
     }
 
+    useEffect(() => {
+        async function getParticipants() {
+            const newParticipants = await axios.get(`${DOMAIN}/api/chats/participants/${props.currentChat.chat_id}`)
+            setParticipants(newParticipants.data)
+        }
+        getParticipants();
+    }, [props.currentChat])
+
     async function handleAddFriendToChat(e) {
         e.preventDefault();
         const friend = e.target.friend.value;
@@ -135,7 +145,18 @@ export default function Messages(props) {
                 </div>
             </div>
             {menuMode && <div className="sticky top-16 bg-slate-900 z-[99]">
-                <button onClick={() => setLeaveChatMode(true)} className="absolute right-0 flex delete-btn cursor-pointer px-2 mx-1 bg-red-900 rounded-xl hover:bg-red-600 transition-all ease duration-300 z-[99]">Leave Chat<IoExitOutline size={25} className="text-center ml-2" /></button>
+                <div className="rounded-xl absolute right-0 mx-1 bg-slate-700 z-[99] px-3 py-3">
+                    <button onClick={() => setLeaveChatMode(true)} className="flex delete-btn cursor-pointer px-2 mx-1 my-2 bg-red-900 rounded-xl hover:bg-red-600 transition-all ease duration-300 z-[99]">Leave Chat<IoExitOutline size={25} className="text-center" /></button>
+                    <h3 className="text-xl text-center py-2">Participants</h3>
+                    <div className="flex flex-col">
+                        {participants.map((participant) =>
+                            <div className="flex py-2">
+                                <img src={profilePic} className="w-[40px]  rounded-full mr-2" />
+                                <p>{participant.username}</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>}
             <div onClick={toggleInviteMode} className="sticky top-[80px] md:top-16 bg-slate-800 py-1 md:py-5 cursor-pointer hover:bg-slate-600 transition-all ease duration-300">+ Invite friend</div>
             {inviteFriendMode && <form onSubmit={handleAddFriendToChat} className="sticky top-32 bg-slate-800 py-2">
