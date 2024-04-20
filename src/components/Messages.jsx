@@ -150,8 +150,8 @@ export default function Messages(props) {
                     <h3 className="text-xl text-center py-2">Participants</h3>
                     <div className="flex flex-col">
                         {participants.map((participant) =>
-                            <div className="flex py-2">
-                                <img src={profilePic} className="w-[40px]  rounded-full mr-2" />
+                            <div key={participant.user_id} className="flex py-2 px-1 rounded-xl cursor-pointer hover:bg-slate-800 transition-all ease duration-300" onClick={() => props.clickedFriend(participant.username)}>
+                                <img src={profilePic} className="w-[40px] rounded-full mr-2" />
                                 <p>{participant.username}</p>
                             </div>
                         )}
