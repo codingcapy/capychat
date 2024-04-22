@@ -17,6 +17,7 @@ import MessageFriend from "./MessageFriend";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaEllipsis } from "react-icons/fa6";
 import profilePic from "/capypaul01.jpg";
+import { BsEmojiSmileFill } from "react-icons/bs";
 
 const socket = io("https://capychat-server-production.up.railway.app");
 
@@ -185,8 +186,12 @@ export default function Messages(props) {
             <div className={`py-2 md:py-10 bg-slate-800 sticky z-20 ${isMenuSticky ? "top-0" : "bottom-0"}`}>
                 <form onSubmit={props.handleCreateMessage}>
                     <div className="flex">
-                        <input type="text" id="content" name="content" placeholder="write a message" value={props.inputMessage} onChange={(e) => props.setInputMessage(e.target.value)} required className="py-2 px-2 my-2 rounded-xl md:w-[800px] text-black" />
-                        <button type="submit" className="mx-1 px-4 md:mx-2 md:px-5 rounded-3xl bg-yellow-600 text-white"><LuSendHorizonal size={25} /></button>
+                        <div className="flex px-2 py-1 rounded-xl md:w-[800px] bg-slate-700 text-white">
+                            <input type="text" id="content" name="content" placeholder="write a message" value={props.inputMessage} onChange={(e) => props.setInputMessage(e.target.value)} required className="bg-slate-700 md:w-[800px] pl-2 outline-none" />
+                            <div className="block md:hidden"><BsEmojiSmileFill size={30} className="mx-2" /></div>
+                            <div className="hidden md:block"><BsEmojiSmileFill size={30} className="mx-2" /></div>
+                        </div>
+                        <button type="submit" className="px-2 mx-2 rounded-3xl bg-slate-600 text-white"><LuSendHorizonal size={25} /></button>
                     </div>
                 </form>
             </div>
