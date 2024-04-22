@@ -186,12 +186,12 @@ export default function Messages(props) {
             <div className={`py-2 md:py-10 bg-slate-800 sticky z-20 ${isMenuSticky ? "top-0" : "bottom-0"}`}>
                 <form onSubmit={props.handleCreateMessage}>
                     <div className="flex">
-                        <div className="flex px-2 py-1 rounded-xl md:w-[800px] bg-slate-700 text-white">
-                            <input type="text" id="content" name="content" placeholder="write a message" value={props.inputMessage} onChange={(e) => props.setInputMessage(e.target.value)} required className="bg-slate-700 md:w-[800px] pl-2 outline-none" />
-                            <div className="block md:hidden"><BsEmojiSmileFill size={30} className="mx-2" /></div>
+                        <div className="flex px-1 md:px-2 py-1 rounded-xl md:w-[800px] bg-slate-700 text-white">
+                            <input type="text" id="content" name="content" placeholder="write a message" value={props.inputMessage} onChange={(e) => props.setInputMessage(e.target.value)} required className="bg-slate-700 md:w-[800px] pl-2 md:outline-none" />
+                            <div className="block md:hidden"><BsEmojiSmileFill size={30} className="mx-1" /></div>
                             <div className="hidden md:block"><BsEmojiSmileFill size={30} className="mx-2" /></div>
                         </div>
-                        <button type="submit" className="px-2 mx-2 rounded-3xl bg-slate-600 text-white"><LuSendHorizonal size={25} /></button>
+                        <button type="submit" className="px-1 md:px-2 mx-1 md:mx-2 rounded-3xl bg-slate-600 text-white"><LuSendHorizonal size={25} /></button>
                     </div>
                 </form>
             </div>
