@@ -189,39 +189,39 @@ export default function Messages(props) {
                 <div ref={messagesEndRef} />
             </div>
             <div className={`py-2 md:py-10 bg-slate-800 sticky z-20 ${isMenuSticky ? "top-0" : "bottom-0"}`}>
-                {emojiMode && <div className="bg-slate-700 grid grid-cols-10 mb-1 rounded-xl">
-                    <div className="text-xl">😀</div>
-                    <div className="text-xl">😁</div>
-                    <div className="text-xl">😂</div>
-                    <div className="text-xl">🤣</div>
-                    <div className="text-xl">😃</div>
-                    <div className="text-xl">😄</div>
-                    <div className="text-xl">😅</div>
-                    <div className="text-xl">😆</div>
-                    <div className="text-xl">😉</div>
-                    <div className="text-xl">😊</div>
-                    <div className="text-xl">😋</div>
-                    <div className="text-xl">😎</div>
-                    <div className="text-xl">😍</div>
-                    <div className="text-xl">😘</div>
-                    <div className="text-xl">🥰</div>
-                    <div className="text-xl">😗</div>
-                    <div className="text-xl">😏</div>
-                    <div className="text-xl">🙄</div>
-                    <div className="text-xl">😣</div>
-                    <div className="text-xl">😥</div>
-                    <div className="text-xl">😮</div>
-                    <div className="text-xl">🤐</div>
-                    <div className="text-xl">😯</div>
-                    <div className="text-xl">😪</div>
-                    <div className="text-xl">😫</div>
-                    <div className="text-xl">🥱</div>
-                    <div className="text-xl">😴</div>
-                    <div className="text-xl">😌</div>
-                    <div className="text-xl">😛</div>
-                    <div className="text-xl">😜</div>
-                </div>}
                 <form onSubmit={props.handleCreateMessage}>
+                    {emojiMode && <div className="bg-slate-700 grid grid-cols-10 mb-1 rounded-xl">
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😀")}>😀</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😁")}>😁</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😂")}>😂</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "🤣")}>🤣</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😃")}>😃</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😄")}>😄</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😅")}>😅</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😆")}>😆</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😉")}>😉</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😊")}>😊</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😋")}>😋</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😎")}>😎</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😍")}>😍</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😘")}>😘</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "🥰")}>🥰</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😗")}>😗</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😏")}>😏</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "🙄")}>🙄</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😣")}>😣</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😥")}>😥</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😮")}>😮</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "🤐")}>🤐</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😯")}>😯</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😪")}>😪</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😫")}>😫</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "🥱")}>🥱</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😴")}>😴</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😌")}>😌</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😛")}>😛</div>
+                        <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😜")}>😜</div>
+                    </div>}
                     <div className="flex">
                         <div className="flex px-1 md:px-2 py-1 rounded-xl md:w-[800px] bg-slate-700 text-white">
                             <input type="text" id="content" name="content" placeholder="write a message" value={props.inputMessage} onChange={(e) => props.setInputMessage(e.target.value)} required className="bg-slate-700 md:w-[800px] pl-2 md:outline-none" />
