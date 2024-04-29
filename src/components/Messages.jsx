@@ -128,6 +128,27 @@ export default function Messages(props) {
         }
     }
 
+    async function handleCreateMessage(e) {
+        e.preventDefault();
+        const content = e.target.content.value;
+        const currentUser = props.user.username;
+        if (content.length > 25000) {
+            return setMessageTooLong(true)
+        }
+        const message = { content, user: currentUser, chatId: props.currentChat.chat_id };
+        const res = await axios.post(`${DOMAIN}/api/messages`, message);
+        if (res?.data.success) {
+            const newMessage = await axios.get(`${DOMAIN}/api/messages/${props.currentChat.chat_id}`);
+            props.setCurrentMessages(newMessage.data);
+            props.setInputMessage("");
+            setEmojiMode(false);
+            socket.emit("message", message);
+        }
+        else {
+            props.setInputMessage("");
+        }
+    }
+
     return (
         <div className="px-5 border-2 border-slate-600 mx-auto bg-slate-800 w-[330px] md:w-[900px] h-[77vh] md:h-screen overflow-y-auto">
             <div className="flex justify-between py-5 pb-7 md:pb-3 sticky top-0 bg-slate-800">
@@ -189,7 +210,7 @@ export default function Messages(props) {
                 <div ref={messagesEndRef} />
             </div>
             <div className={`py-2 md:py-10 bg-slate-800 sticky z-20 ${isMenuSticky ? "top-0" : "bottom-0"}`}>
-                <form onSubmit={props.handleCreateMessage}>
+                <form onSubmit={handleCreateMessage}>
                     {emojiMode && <div className="bg-slate-700 grid grid-cols-10 mb-1 rounded-xl">
                         <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😀")}>😀</div>
                         <div className="text-xl cursor-pointer" onClick={() => props.setInputMessage(props.inputMessage.toString() + "😁")}>😁</div>
