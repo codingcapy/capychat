@@ -188,26 +188,6 @@ export default function Dashboard() {
         });
     }
 
-    async function handleCreateMessage(e) {
-        e.preventDefault();
-        const content = e.target.content.value;
-        const currentUser = user.username;
-        if (content.length > 25000) {
-            return setMessageTooLong(true)
-        }
-        const message = { content, user: currentUser, chatId: currentChat.chat_id };
-        const res = await axios.post(`${DOMAIN}/api/messages`, message);
-        if (res?.data.success) {
-            const newMessage = await axios.get(`${DOMAIN}/api/messages/${currentChat.chat_id}`);
-            setCurrentMessages(newMessage.data);
-            setInputMessage("");
-            socket.emit("message", message);
-        }
-        else {
-            setInputMessage("");
-        }
-    }
-
     function handleLogout() {
         logoutService();
         navigate('/capychat/')
@@ -294,7 +274,7 @@ export default function Dashboard() {
                         {showDefault && <div className="px-5 border-2 border-slate-600 bg-slate-800 min-w-full h-screen overflow-y-auto">
                             <div className="flex text-xl sticky top-0 bg-slate-800 py-5"><IoChatbubbleOutline size={25} className="mx-2" />Messages</div>
                         </div>}
-                        {showMessages && <Messages currentChat={currentChat} user={user} handleCreateMessage={handleCreateMessage} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} setCurrentChat={setCurrentChat} clickedFriend={clickedFriend} />}
+                        {showMessages && <Messages currentChat={currentChat} user={user} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} setCurrentChat={setCurrentChat} clickedFriend={clickedFriend} />}
                         {showAddFriend && <AddFriend setFriends={setFriends} user={user} friends={friends} />}
                         {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} inputChat={inputChat} setInputChat={setInputChat} />}
                         {showProfile && <Profile />}
@@ -307,7 +287,7 @@ export default function Dashboard() {
                 <div className="px-3 flex flex-col md:hidden">
                     {chatsMode && <Chats chats={chats} clickedChat={clickedChat} />}
                     {friendsMode && <Friends clickedAddFriend={clickedAddFriend} clickedFriend={clickedFriend} user={user} friends={friends} setFriends={setFriends} />}
-                    {showMessages && <Messages currentChat={currentChat} user={user} handleCreateMessage={handleCreateMessage} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} setCurrentChat={setCurrentChat} clickedFriend={clickedFriend} />}
+                    {showMessages && <Messages currentChat={currentChat} user={user} inputMessage={inputMessage} setInputMessage={setInputMessage} currentMessages={currentMessages} setCurrentMessages={setCurrentMessages} clickedLeaveChat={clickedLeaveChat} setChats={setChats} setCurrentChat={setCurrentChat} clickedFriend={clickedFriend} />}
                     {showAddFriend && <AddFriend setFriends={setFriends} user={user} />}
                     {showFriend && <FriendProfile handleCreateChat={handleCreateChat} friendName={friend} user={user} inputChat={inputChat} setInputChat={setInputChat} />}
                     {showProfile && <Profile />}
